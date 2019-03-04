@@ -3,11 +3,13 @@ const bcrypt = require('bcryptjs')
 module.exports = {
   register: async (req, res) => {
     const db = req.app.get('db');
+    const { session } = req;
     const { username, password, email } = req.body;
     let takenEmail = await db.auth.check_email({email})
-    takenEmail = takenEmail[0]
+    takenEmail = +takenEmail[0].count
+    console.log(takenEmail)
     if(takenEmail){
-      return res.status(409).send('email taken')
+      return res.sendStatus(409)
     }
     let salt = bcrypt.genSaltSync(10);
     let hash = bcrypt.hashSync(password, salt);
