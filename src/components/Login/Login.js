@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import axios from 'axios'
+import {connect} from 'react-redux';
+import {updateUser} from '../../ducks/reducer';
+
 
 class Login extends Component {
   constructor(props){
@@ -6,7 +10,8 @@ class Login extends Component {
     this.state = {
       email: '',
       password: '',
-      username: ''
+      username: '',
+      id: 0
     }
   }
 
@@ -14,6 +19,21 @@ class Login extends Component {
     this.setState({
       [prop] : val
     })
+  }
+
+  login = async () => {
+    let user = {
+      email: this.state.email,
+      password: this.state.password
+    }
+    try {
+      let response = await axios.post('/auth/login', user);
+      this.props.updateUser(response.data);
+      this.props.history.push('/dashboard')
+    } catch(err) {
+      alert('incorrect email or passwors')
+      console.log(err)
+    }
   }
 
   render() { 
@@ -32,11 +52,22 @@ class Login extends Component {
           onChange={(e) => {this.handleChange('password', e.target.value)}}
         />
 
-        <button>Login</button>
+        <button onClick={this.login} >Login</button>
         <button onClick={() => this.props.history.push('/')}>Cancel</button>
       </div>
      );
   }
 }
  
-export default Login;
+
+const mapStateToProps = (reduxState) => {
+  return {
+    id: reduxState.id
+  }
+}
+
+const mapDispatchToProps = {
+  updateUser
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
