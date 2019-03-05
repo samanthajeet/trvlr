@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import {connect} from 'react-redux';
 import {updateUser} from '../../ducks/reducer';
+import './Login.css'
 
 
 class Login extends Component {
@@ -38,19 +39,24 @@ class Login extends Component {
 
   render() { 
     return ( 
-      <div>
-        <h1>Login</h1>
-        <input 
-          type="text"
-          placeholder="email"
-          onChange={(e) => {this.handleChange('email', e.target.value)}}
-        />
+      <div className="Login">
+        <h1>trvlr</h1>
 
-        <input
-          type="password"
-          placeholder="password"
-          onChange={(e) => {this.handleChange('password', e.target.value)}}
-        />
+          <p>email</p>
+          <input 
+            type="text"
+            placeholder="email"
+            onChange={(e) => {this.handleChange('email', e.target.value)}}
+          />
+
+
+
+          <p>password</p>
+          <input
+            type="password"
+            placeholder="password"
+            onChange={(e) => {this.handleChange('password', e.target.value)}}
+          />
 
         <button onClick={this.login} >Login</button>
         <button onClick={() => this.props.history.push('/')}>Cancel</button>

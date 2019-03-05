@@ -1,14 +1,13 @@
 import React from 'react';
+import './Landing.css'
 
 export default function Landing(props){
   return (
-    <div>
+    <div className="landing">
       <h1>trvlr</h1>
       <h4>travel journal and community</h4>
-      <div>
-        <button onClick={() => props.history.push('/login')} >Login</button>
-        <button onClick={() => props.history.push('/register')} >Sign Up</button>
-      </div>
+      <button onClick={() => props.history.push('/login')} >Login</button>
+      <button onClick={() => props.history.push('/register')} >Sign Up</button>
     </div>
   )
 }

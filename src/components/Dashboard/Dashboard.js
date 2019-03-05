@@ -2,9 +2,15 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {updateUser} from '../../ducks/reducer';
 import Axios from 'axios';
+import Navigation from '../Navigation/Navigation';
+import { withRouter} from 'react-router-dom';
+import './Dashboard.css'
 
 class Dashboard extends Component {
-
+  constructor(props){
+    super(props);
+    this.logout = this.logout.bind(this)
+  }
 
   componentDidMount(){
     this.getUser()
@@ -22,15 +28,22 @@ class Dashboard extends Component {
       }
     }
   }
+
+  logout = () => {
+    Axios.post('/auth/logout');
+    this.props.history.push('/')
+  }
  
 
   render() { 
-    const { username, user_image } = this.props
     return ( 
       <div>
+        <Navigation 
+          location={this.props.location} 
+          history={this.props.history} 
+          logout={this.logout}
+        />
         <h1>Dashboard Component</h1>
-        <p>{username}</p>
-        <img src={user_image} alt={username}/>
       </div>
      );
   }
@@ -44,4 +57,4 @@ const mapDispatchToProps = {
   updateUser
 }
  
-export default connect(mapStateToProps, mapDispatchToProps )(Dashboard);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps )(Dashboard));
