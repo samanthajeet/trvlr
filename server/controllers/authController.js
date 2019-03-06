@@ -50,5 +50,14 @@ module.exports = {
   logout: (req, res) => {
     req.session.destroy();
     res.sendStatus(200)
+  },
+
+  updateUserInfo: async (req, res) => {
+    const {user_id} = req.session.user
+    const {user_image} = req.body
+    const db = req.app.get('db')
+    let updateUser = await db.auth.update_user({user_image, user_id})
+    res.status(200).cent(updateUser)
+  
   }
 }

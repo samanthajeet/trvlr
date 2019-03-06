@@ -1,0 +1,47 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.communiytPost {
+  width: 20vw;
+  height: 50vh;
+  border: 1.5px solid red;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between
+}
+
+.mainImage{
+  width: 100%;
+  height: 50%
+}
+
+.communiytPost h1 {
+  font-size: 1.2rem;
+  text-transform: none;
+  font-weight: 700;
+  color: #656565
+}
+
+.communiytPost p {
+  font-size: 1rem;
+  text-transform: none;
+  font-weight: 400;
+  color: #656565
+}
+
+.authorDetail {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  bottom: 0;
+  right: 0;
+}
+
+.authorDetail p {
+  margin-right: 2%;
+  font-weight: 700;
+  font-size: 0.9rem;
+}

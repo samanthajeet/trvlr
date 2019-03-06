@@ -3,7 +3,27 @@
   padding: 0;
 }
 
-body {
+.dashboard {
+  width: 75%;
   display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   
+}
+
+.communityPostAll {
+  width: 100vw;
+  display: flex;
+  justify-content: space-around;
+}
+
+h2 {
+  color: #626262;
+  font-size: 2rem;
+  letter-spacing: 0.1rem;
+  font-weight: 700;
+}
+
+.trvlr {
+  color: red;
 }

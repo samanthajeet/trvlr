@@ -1,0 +1,21 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.userPost {
+  width: 25vw;
+  height: 50vh;
+  border: 2px solid red;
+  padding: 10px;
+  margin: 25px
+}
+
+.userPost img {
+  width: 100%;
+}
+
+.userPost h1 {
+  font-size: 1rem;
+  text-transform: none;
+}

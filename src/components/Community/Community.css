@@ -1,0 +1,23 @@
+
+
+.community-posts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+}
+
+.search-posts {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 2%;
+}
+
+.search-posts button {
+  width: 10%;
+  height: 10%;
+}
+
+.search-posts input {
+  width: 20%;
+}

@@ -23,3 +23,9 @@ create table posts(
     post_image2 text,
     post_image3 text
 );
+
+
+insert into posts(user_id, post_title, post_text, post_image1)
+values(4, 'Am I Beyonce?', 'I AM', 'https://media.npr.org/assets/img/2018/10/11/hsieh_angela_music_turntables_beyonce_wide-0a3bbf1dd333de9f77c0795468fec0c987eb63c8-s800-c85.jpg'),
+(5, 'Pyramid of Greatness', 'Honor: If you need it defined you dont have it', 'https://www.nbcstore.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/9/1/91frcam3brl._sl1500_.jpg');
+

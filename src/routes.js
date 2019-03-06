@@ -4,14 +4,29 @@ import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import Landing from './components/Landing/Landing';
 import Dashboard from './components/Dashboard/Dashboard';
-import Journal from './components/Journal/Journal'
+import Journal from './components/Journal/Journal';
+import NewPost from './components/NewPost/NewPost';
+import Post from './components/Post/Post.js';
+import Community from './components/Community/Community'
+
+
+import {HashRouter} from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './ducks/store'
 
 export default (
-  <Switch>
-    <Route path='/' exact component={Landing} />
-    <Route path='/login' component={Login} />
-    <Route path='/register' component={Register} />
-    <Route path='/dashboard' component={Dashboard} />
-    <Route path='/journal' component={Journal} />
-  </Switch>
+  <Provider store={store} >
+    <HashRouter>
+      <Switch>
+        <Route path='/' exact component={Landing} />
+        <Route path='/login' component={Login} />
+        <Route path='/register' component={Register} />
+        <Route path='/dashboard' component={Dashboard} />
+        <Route path='/newPost' component={NewPost} />
+        <Route path='/journal/:post_id' component={Post} />
+        <Route path='/journal' component={Journal} />
+        <Route path='/community' component={Community} />
+      </Switch>
+    </HashRouter>
+  </Provider>
 )
