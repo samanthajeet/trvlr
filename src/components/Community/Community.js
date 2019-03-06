@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import CommunityPost from '../Community Posts/Community_Post';
+import Navigation from '../Navigation/Navigation';
 import './Community.css'
 
 
@@ -65,6 +66,7 @@ class Community extends Component {
     })
     return ( 
       <div>
+        <Navigation />
         <h2>
           <span className="trvlr" > trvlr </span>
           community

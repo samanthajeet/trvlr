@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {updateUser} from '../../ducks/reducer';
 import Axios from 'axios';
-import { withRouter} from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 import CommunityPost from '../Community Posts/Community_Post'
 import './Dashboard.css'
@@ -72,12 +71,7 @@ class Dashboard extends Component {
     let mappedRecent = mappedPosts.slice(0,4)
     return ( 
       <div>
-        <Navigation 
-          location={this.props.location} 
-          history={this.props.history} 
-          logout={this.logout}
-      
-        />
+        <Navigation />
         <div  className="dashboard" >
           <h2>
             recent entries from the
@@ -101,4 +95,4 @@ const mapDispatchToProps = {
   updateUser
 }
  
-export default withRouter(connect(mapStateToProps, mapDispatchToProps )(Dashboard));
+export default connect(mapStateToProps, mapDispatchToProps )(Dashboard);

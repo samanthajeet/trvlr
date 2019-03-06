@@ -8,7 +8,8 @@ import Journal from './components/Journal/Journal';
 import NewPost from './components/NewPost/NewPost';
 import Post from './components/Post/Post.js';
 import Community from './components/Community/Community';
-import UserInfo from './components/UserInfo/UserInfo'
+import UserInfo from './components/UserInfo/UserInfo';
+import Nav from './components/Navigation/Navigation'
 
 
 import {HashRouter} from 'react-router-dom';
@@ -22,6 +23,7 @@ export default (
         <Route path='/' exact component={Landing} />
         <Route path='/login' component={Login} />
         <Route path='/register' component={Register} />
+        <Route path='/navigation' component={Nav} />
         <Route path='/dashboard' component={Dashboard} />
         <Route path='/newPost' component={NewPost} />
         <Route path='/journal/:post_id' component={Post} />

@@ -3,6 +3,7 @@ import axios from 'axios'
 import {connect} from 'react-redux';
 import { updateUser } from '../../ducks/reducer'
 import Avatar from '@material-ui/core/Avatar';
+import Navigation from '../Navigation/Navigation';
 
 class UserInfo extends Component {
   constructor(props){
@@ -44,6 +45,7 @@ class UserInfo extends Component {
     axios.put('/auth/userInfo', {user_image}).then( response => {
       console.log(response)
       this.props.history.push('/dashboard')
+      this.props.updateUser(user_image)
     })
   }
 
@@ -52,6 +54,7 @@ class UserInfo extends Component {
     console.log(this.props)
     return ( 
       <div>
+        <Navigation />
         <h1>user info component</h1>
         <p>user image</p>
         <Avatar src={this.state.user_image} alt={this.props.username} style={{"width": 200, "height": 200}}/>
