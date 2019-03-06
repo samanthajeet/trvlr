@@ -15,6 +15,7 @@ import './Navigation.css'
         </div>
         <Link to='/journal'>journal</Link>
         <Link to='/community'>trvlr community</Link>
+        <Link to='/userinfo'>account</Link>
         <button onClick={() => {props.logout()}} >Log Out</button>
       </div>
     )

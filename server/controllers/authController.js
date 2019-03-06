@@ -40,6 +40,7 @@ module.exports = {
   
   isLoggedIn: (req, res) => {
     const { user } = req.session;
+    console.log({user})
     if(user) {
       res.status(200).send(user)
     } else {
@@ -57,7 +58,7 @@ module.exports = {
     const {user_image} = req.body
     const db = req.app.get('db')
     let updateUser = await db.auth.update_user({user_image, user_id})
-    res.status(200).cent(updateUser)
+    res.status(200).send(updateUser)
   
   }
 }

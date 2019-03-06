@@ -7,7 +7,8 @@ import Dashboard from './components/Dashboard/Dashboard';
 import Journal from './components/Journal/Journal';
 import NewPost from './components/NewPost/NewPost';
 import Post from './components/Post/Post.js';
-import Community from './components/Community/Community'
+import Community from './components/Community/Community';
+import UserInfo from './components/UserInfo/UserInfo'
 
 
 import {HashRouter} from 'react-router-dom';
@@ -26,6 +27,7 @@ export default (
         <Route path='/journal/:post_id' component={Post} />
         <Route path='/journal' component={Journal} />
         <Route path='/community' component={Community} />
+        <Route path='/userinfo' component={UserInfo} />
       </Switch>
     </HashRouter>
   </Provider>
