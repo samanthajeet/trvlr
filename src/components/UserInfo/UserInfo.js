@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios'
 import {connect} from 'react-redux';
-import { updateUser } from '../../ducks/reducer'
+import { updateUser, updateUserInfo } from '../../ducks/reducer'
 import Avatar from '@material-ui/core/Avatar';
 import Navigation from '../Navigation/Navigation';
 
@@ -45,7 +45,7 @@ class UserInfo extends Component {
     axios.put('/auth/userInfo', {user_image}).then( response => {
       console.log(response)
       this.props.history.push('/dashboard')
-      this.props.updateUser(user_image)
+      this.props.updateUserInfo(user_image)
     })
   }
 
@@ -76,7 +76,8 @@ const mapStateToProps = (reduxState) => {
 }
 
 const mapDispatchToProps = {
-  updateUser
+  updateUser,
+  updateUserInfo
 }
  
 export default connect(mapStateToProps, mapDispatchToProps)(UserInfo);

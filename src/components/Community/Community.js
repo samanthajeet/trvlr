@@ -66,7 +66,6 @@ class Community extends Component {
     })
     return ( 
       <div>
-        <Navigation />
         <h2>
           <span className="trvlr" > trvlr </span>
           community

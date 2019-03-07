@@ -78,7 +78,6 @@ class Journal extends Component {
 
     return ( 
       <div>
-        <Navigation />
         <button onClick={() => this.props.history.push('/newPost') } >New Entry</button>
         <h1>You have {mappedPosts.length} entries</h1>
         <div className="userposts">

@@ -12,7 +12,6 @@ class Dashboard extends Component {
     this.state = {
       communityPosts: []
     }
-    this.logout = this.logout.bind(this)
   }
 
   componentDidMount(){
@@ -44,10 +43,7 @@ class Dashboard extends Component {
     }
   }
 
-  logout = () => {
-    Axios.post('/auth/logout');
-    this.props.history.push('/')
-  }
+
  
 
   render() { 
@@ -71,7 +67,6 @@ class Dashboard extends Component {
     let mappedRecent = mappedPosts.slice(0,4)
     return ( 
       <div>
-        <Navigation />
         <div  className="dashboard" >
           <h2>
             recent entries from the

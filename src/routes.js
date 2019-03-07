@@ -9,28 +9,19 @@ import NewPost from './components/NewPost/NewPost';
 import Post from './components/Post/Post.js';
 import Community from './components/Community/Community';
 import UserInfo from './components/UserInfo/UserInfo';
-import Nav from './components/Navigation/Navigation'
 
 
-import {HashRouter} from 'react-router-dom';
-import { Provider } from 'react-redux';
-import store from './ducks/store'
 
 export default (
-  <Provider store={store} >
-    <HashRouter>
-      <Switch>
-        <Route path='/' exact component={Landing} />
-        <Route path='/login' component={Login} />
-        <Route path='/register' component={Register} />
-        <Route path='/navigation' component={Nav} />
-        <Route path='/dashboard' component={Dashboard} />
-        <Route path='/newPost' component={NewPost} />
-        <Route path='/journal/:post_id' component={Post} />
-        <Route path='/journal' component={Journal} />
-        <Route path='/community' component={Community} />
-        <Route path='/userinfo' component={UserInfo} />
-      </Switch>
-    </HashRouter>
-  </Provider>
+  <Switch>
+    <Route path='/' exact component={Landing} />
+    <Route path='/login' component={Login} />
+    <Route path='/register' component={Register} />
+    <Route path='/dashboard' component={Dashboard} />
+    <Route path='/newPost' component={NewPost} />
+    <Route path='/journal/:post_id' component={Post} />
+    <Route path='/journal' component={Journal} />
+    <Route path='/community' component={Community} />
+    <Route path='/userinfo' component={UserInfo} />
+  </Switch>
 )
