@@ -1,26 +1,34 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
-import axios from 'axios';
-import {clearUser} from './../../ducks/reducer'
+import {clearUser} from './../../ducks/reducer';
 import './Navigation.css'
 
 
-
 function Nav(props){
-  if(props.location.pathname !== '/' && props.location.pathname !== '/login'){
+  let pathname = props.location.pathname
+  console.log({pathname})
+  if(
+        props.location.pathname !== '/'
+        && props.location.pathname !== '/login' 
+        && props.location.pathname !== '/register'
+        // && pathname.match(/public/g) === 'public'
+      ){
       return (
         <div className='Nav'>
+          <button className="logout" onClick={props.logout} >Log Out</button>
           <div className='greeting'>
-            <Avatar src={props.user_image} alt={props.username} style={{"width": 100, "height": 100}} />
-            <h1>Aloha! {props.username}</h1>
+            <Avatar src={props.user_image} alt={props.username} style={{"width": 150, "height": 150}} />
+            <div className='photo-border'></div>
+            <h1>Aloha, {props.username}!</h1>
           </div>
-          <Link to='/dashboard'>dashboard</Link>
-          <Link to='/journal'>journal</Link>
-          <Link to='/community'>trvlr community</Link>
-          <Link to='/userinfo'>account</Link>
-          <button onClick={props.logout} >Log Out</button>
+          <div className="nav-links">
+            <Link to='/userinfo'>account</Link>
+            <Link to='/dashboard'>dashboard</Link>
+            <Link to='/journal'>journal</Link>
+            <Link to='/community'>trvlr community</Link>
+          </div>
         </div>
       ) 
     } else {
@@ -39,4 +47,4 @@ const mapDispatchtoProps = {
 }
 
 
-export default connect(mapStateToProps, mapDispatchtoProps)(Nav)
+export default withRouter(connect(mapStateToProps, mapDispatchtoProps)(Nav))

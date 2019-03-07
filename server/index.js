@@ -54,3 +54,8 @@ app.get(`/journal/:post_id`, journalCtrl.getPost);
 
 app.post('/journal/createPost', journalCtrl.createPost);
 app.delete('/journal/:post_id', journalCtrl.deletePost);
+
+//PUBLIC ENDPOINTS
+const publicCtrl = require('./controllers/publicController')
+app.get(`/publicProfile/user/:user_id`, publicCtrl.getPublicProfile)
+app.get(`/publicProfile/posts/:user_id`, publicCtrl.getPublicPosts)

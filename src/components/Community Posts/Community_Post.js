@@ -13,12 +13,14 @@ export default function(props){
         <h1>{title}</h1>
         <p>{text}</p>
       </div>
-      <div className="authorDetail">
-        <p>{author}</p>
-        <Avatar src={authorImg} alt={author} />
+      <div className='author-view'>
+        <button onClick={ () => props.history.push(`/journal/${post_id}`)}>view</button>
+        <div className="authorDetail">
+          <p>{author}</p>
+          <Avatar src={authorImg} alt={author} />
+        </div>
       </div>
 
-      <button onClick={ () => props.history.push(`/journal/${post_id}`)}>view</button>
     </div>
 
 

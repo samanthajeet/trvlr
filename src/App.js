@@ -20,8 +20,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Nav location={this.props.location}
-            history={this.props.history}
+        <Nav
+        // location={this.props.location}
+            // history={this.props.history}
+            // match={this.props.match}
             logout={this.logout}
         />
         {routes}

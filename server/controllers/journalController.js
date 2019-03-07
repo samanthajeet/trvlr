@@ -39,6 +39,9 @@
        res.status(500).send(err)
      }
    },
+
+
+
    deletePost: (req, res) => {
     const db = req.app.get('db')
     const { post_id } = req.params;

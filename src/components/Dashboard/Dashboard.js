@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {updateUser} from '../../ducks/reducer';
 import Axios from 'axios';
-import Navigation from '../Navigation/Navigation';
 import CommunityPost from '../Community Posts/Community_Post'
 import './Dashboard.css'
 

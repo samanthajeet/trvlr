@@ -9,6 +9,7 @@ import NewPost from './components/NewPost/NewPost';
 import Post from './components/Post/Post.js';
 import Community from './components/Community/Community';
 import UserInfo from './components/UserInfo/UserInfo';
+import PublicProfile from './components/PublicProfile/PublicProfile';
 
 
 
@@ -21,6 +22,7 @@ export default (
     <Route path='/newPost' component={NewPost} />
     <Route path='/journal/:post_id' component={Post} />
     <Route path='/journal' component={Journal} />
+    <Route path='/publicProfile/:user_id' component={PublicProfile} />
     <Route path='/community' component={Community} />
     <Route path='/userinfo' component={UserInfo} />
   </Switch>

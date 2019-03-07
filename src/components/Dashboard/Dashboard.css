@@ -4,7 +4,7 @@
 }
 
 .dashboard {
-  width: 75%;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -17,11 +17,12 @@
   justify-content: space-around;
 }
 
-h2 {
+.dashboard h2 {
   color: #626262;
   font-size: 2rem;
   letter-spacing: 0.1rem;
   font-weight: 700;
+  padding-left: 1%;
 }
 
 .trvlr {

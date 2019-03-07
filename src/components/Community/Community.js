@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import CommunityPost from '../Community Posts/Community_Post';
-import Navigation from '../Navigation/Navigation';
+
 import './Community.css'
 
 

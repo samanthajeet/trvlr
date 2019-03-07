@@ -3,7 +3,6 @@ import axios from 'axios';
 import {connect} from 'react-redux';
 import {updateUser} from '../../ducks/reducer';
 import UserPosts from './../User_Posts/User_Posts';
-import Navigation from '../Navigation/Navigation';
 import { withRouter} from 'react-router-dom';
 import './Journal.css'
 
@@ -79,6 +78,8 @@ class Journal extends Component {
     return ( 
       <div>
         <button onClick={() => this.props.history.push('/newPost') } >New Entry</button>
+        <p>public profile: /publicProfile/{this.props.user_id}</p>
+
         <h1>You have {mappedPosts.length} entries</h1>
         <div className="userposts">
           {mappedPosts} 
