@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import {connect} from 'react-redux';
+import {Rediret}  from 'react-router-dom'
 import {updateUser} from '../../ducks/reducer';
+
 
 import './Login.css'
 
@@ -39,6 +41,7 @@ class Login extends Component {
   }
 
   render() { 
+
     return ( 
       <div className="login">
         <fig className="login-image">
@@ -54,8 +57,6 @@ class Login extends Component {
             placeholder="email"
             onChange={(e) => {this.handleChange('email', e.target.value)}}
           />
-
-
 
           <p>password</p>
           <input

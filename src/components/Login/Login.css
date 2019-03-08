@@ -32,7 +32,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 2px solid green;
   animation-name: fade-in;
   animation-duration: 1s
 }
