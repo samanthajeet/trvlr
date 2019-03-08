@@ -5,6 +5,16 @@
   padding: 0;
 }
 
+body {
+  animation-name: fade-in;
+  animation-duration: 1s
+}
+
+@keyframes fade-in {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
 .landing {
   height: 100%;
   display: flex;

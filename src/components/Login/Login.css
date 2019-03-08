@@ -8,13 +8,13 @@
 
 
 
-
 .login {
   height: 100%;
   display: flex;
   justify-content: flex-end;
-  
+
 }
+  
 
 .login-image img {
   width: 100%;
@@ -32,7 +32,16 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border: 2px solid green;
+  animation-name: fade-in;
+  animation-duration: 1s
 }
+
+@keyframes fade-in {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
 
 .login-input h1 {
   font-weight: 400 ;

@@ -41,6 +41,9 @@ class Login extends Component {
   render() { 
     return ( 
       <div className="login">
+        <fig className="login-image">
+          <img src='https://images.unsplash.com/photo-1519315868-60d544c31ece?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3034&q=80' />
+        </fig>
         <div className="login-input">
           <h1>trvlr</h1>
           <h4>travel journal and community</h4>
@@ -65,9 +68,7 @@ class Login extends Component {
           <button onClick={() => this.props.history.push('/')}>Cancel</button>
         </div>
 
-        <fig className="login-image">
-          <img src='https://images.unsplash.com/photo-1500049242364-5f500807cdd7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2779&q=80' />
-        </fig>
+
       </div>
      );
   }

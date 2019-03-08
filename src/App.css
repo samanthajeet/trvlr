@@ -4,14 +4,10 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  animation-name: fade-in;
-  animation-duration: 1s
+
 }
 
-@keyframes fade-in {
-  0%   { opacity: 0; }
-  100% { opacity: 1; }
-}
+
 
 .App {
   width: 98vw;
