@@ -1,28 +1,31 @@
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,700|Roboto:300:400,500,700');
+
 * {
   box-sizing: border-box;
   padding: 0;
 }
 
 .dashboard {
-  width: 100vw;
+  width: 100%;
   display: flex;
-  flex-direction: column;
   justify-content: flex-end;
   
 }
 
 .communityPostAll {
-  width: 100vw;
+  width: 100%;
   display: flex;
   justify-content: space-around;
 }
 
 .dashboard h2 {
-  color: #626262;
-  font-size: 2rem;
-  letter-spacing: 0.1rem;
-  font-weight: 700;
-  padding-left: 1%;
+  font-size: 1.5rem;
+  font-family: 'Roboto', sans-serif;
+  text-transform: lowercase;
+  font-weight: 200;
+  color: gray;
+  text-align: right;
+  margin-right: 1rem;
 }
 
 .trvlr {

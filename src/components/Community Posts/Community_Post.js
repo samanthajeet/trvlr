@@ -8,17 +8,19 @@ export default function(props){
   return(
 
     <div className='communiytPost'>
-      <img src={image1} alt={title} className="mainImage" />
+      <fig className="communitypostimage">
+        <img src={image1} alt={title}/>
+      </fig>
+
       <div className="post-text" >
-        <h1>{title}</h1>
-        <p>{text}</p>
+        <h3>{title}</h3>
       </div>
       <div className='author-view'>
-        <button onClick={ () => props.history.push(`/journal/${post_id}`)}>view</button>
         <div className="authorDetail">
-          <p>{author}</p>
           <Avatar src={authorImg} alt={author} />
+          <p>{author}</p>
         </div>
+        <button onClick={ () => props.history.push(`/journal/${post_id}`)}>view</button>
       </div>
 
     </div>

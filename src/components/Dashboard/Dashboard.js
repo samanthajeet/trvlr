@@ -65,16 +65,12 @@ class Dashboard extends Component {
 
     let mappedRecent = mappedPosts.slice(0,4)
     return ( 
-      <div>
-        <div  className="dashboard" >
-          <h2>
-            recent entries from the
-            <span className="trvlr" > trvlr </span>
-            community
-          </h2>
-          <div className="communityPostAll" >
-            {mappedRecent} 
-          </div>
+      <div className="dashboard">
+        <h2>
+          recent entries from the<span style={{"color":"#FFAA00"}}> trvlr </span>community
+        </h2>
+        <div className="communityPostAll" >
+          {mappedRecent} 
         </div>
       </div>
      );
