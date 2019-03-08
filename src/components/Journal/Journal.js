@@ -76,13 +76,16 @@ class Journal extends Component {
     
 
     return ( 
-      <div>
-        <button onClick={() => this.props.history.push('/newPost') } >New Entry</button>
-        <p>public profile: /publicProfile/{this.props.user_id}</p>
-
-        <h1>You have {mappedPosts.length} entries</h1>
-        <div className="userposts">
-          {mappedPosts} 
+      <div className="journal">
+        <div className="alluserposts">
+        <div className="journal-sidebar">
+          <h2>You have <span style={{"color":"#FFAA00"}} >{mappedPosts.length}</span> entries</h2>
+          <button onClick={() => this.props.history.push('/newPost') } >New Entry</button>
+          <p>public profile: /publicProfile/{this.props.user_id}</p>
+        </div>
+          <div className="journaluserposts">
+            {mappedPosts} 
+          </div>
         </div>
       </div>
      );
