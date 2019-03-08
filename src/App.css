@@ -1,21 +1,24 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900');
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display|Roboto:400,500,700');
 * {
-  background: #E5E5E5
-}
-.App {
+  background: white;
   box-sizing: border-box;
   padding: 0;
-  font-family: 'Roboto', sans-serif;
-
+  margin: 0;
+  animation-name: fade-in;
+  animation-duration: 1s
 }
 
-button {
-  border: 1.5px solid red;
-  background:none;
-  margin: 2px;
-  font-family: 'Roboto', sans-serif;
-  text-transform: lowercase;
-  color: red;
-  
+@keyframes fade-in {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
 }
+
+.App {
+  width: 98vw;
+  height: 95vh;
+  border: 8px solid #FFAA00;
+  padding: 1%;
+  margin: 1%;
+}
+
 

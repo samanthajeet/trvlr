@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux'
-import {updateUser} from './../../ducks/reducer'
+import {updateUser} from './../../ducks/reducer';
+import './Register.css'
 
 class Register extends Component {
   constructor(props){
@@ -47,49 +48,41 @@ class Register extends Component {
 
   render() { 
     return ( 
-      <div>
-        <h1>Register</h1>
-
-        <div>
+      <div className="register" >
+        <div className="register-input">
+          <h1>trvlr</h1>
+          <h4>travel journal and community</h4>
           <p>username</p>
           <input 
             type="text"
             placeholder="username"
             onChange={(e) => {this.handleChange('username', e.target.value)}}
           />
-        </div>
-
-        <div>
           <p>email</p>
           <input 
             type="text"
             placeholder="email"
             onChange={(e) => {this.handleChange('email', e.target.value)}}
           />
-        </div>
-
-        <div>
           <p>password</p>
           <input 
             type="password"
             placeholder="password"
             onChange={(e) => {this.handleChange('password', e.target.value)}}
           />
-        </div>
-
-        <div>
           <p>password check</p>
           <input 
             type="password"
             placeholder="password"
             onChange={(e) => {this.handleChange('password_check', e.target.value)}}
           />
+          <button onClick={this.signUp}>Sign Up</button>
+          <button onClick={() => this.props.history.push('/')}>Cancel</button>
         </div>
 
-
-
-        <button onClick={this.signUp}>Sign Up</button>
-        <button onClick={() => this.props.history.push('/')}>Cancel</button>
+        <fig className="register-image">
+          <img src='https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3150&q=80' />
+        </fig>
       </div>
      );
   }

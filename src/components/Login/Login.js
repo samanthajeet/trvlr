@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import {connect} from 'react-redux';
 import {updateUser} from '../../ducks/reducer';
+
 import './Login.css'
 
 
@@ -39,9 +40,11 @@ class Login extends Component {
 
   render() { 
     return ( 
-      <div className="Login">
-        <h1>trvlr</h1>
-
+      <div className="login">
+        <div className="login-input">
+          <h1>trvlr</h1>
+          <h4>travel journal and community</h4>
+          
           <p>email</p>
           <input 
             type="text"
@@ -58,8 +61,13 @@ class Login extends Component {
             onChange={(e) => {this.handleChange('password', e.target.value)}}
           />
 
-        <button onClick={this.login} >Login</button>
-        <button onClick={() => this.props.history.push('/')}>Cancel</button>
+          <button onClick={this.login} >Login</button>
+          <button onClick={() => this.props.history.push('/')}>Cancel</button>
+        </div>
+
+        <fig className="login-image">
+          <img src='https://images.unsplash.com/photo-1500049242364-5f500807cdd7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2779&q=80' />
+        </fig>
       </div>
      );
   }
