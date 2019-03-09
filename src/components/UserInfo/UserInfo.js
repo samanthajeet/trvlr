@@ -2,18 +2,21 @@ import React, {Component} from 'react';
 import axios from 'axios'
 import {connect} from 'react-redux';
 import { updateUser, updateUserInfo } from '../../ducks/reducer'
-import Avatar from '@material-ui/core/Avatar';
+import './UserInfo.css'
 
 class UserInfo extends Component {
   constructor(props){
     super(props);
     this.state = {
-      user_image: this.props.user_image
+      user_image: '',
+      username: '',
+      email: ''
     }
   }
 
   componentDidMount(){
     this.getUser()
+
   }
 
   getUser = async () => {
@@ -23,7 +26,10 @@ class UserInfo extends Component {
       try {
         let response = await axios.get('/auth/isLoggedIn')
         this.setState({
-          user_id: response.data.user_id
+          user_id: response.data.user_id,
+          user_image: response.data.user_image,
+          username: response.data.username,
+          email: response.data.email
         })
         this.props.updateUser(response.data)
       } catch(err){
@@ -52,16 +58,34 @@ class UserInfo extends Component {
 
     console.log(this.props)
     return ( 
-      <div>
-        <h1>user info component</h1>
-        <p>user image</p>
-        <Avatar src={this.state.user_image} alt={this.props.username} style={{"width": 200, "height": 200}}/>
-        <input
-          type="text"
-          value={this.state.user_image}
-          onChange={(e) => this.handleChange('user_image', e.target.value)}
-        />
-        <button onClick={this.updateUserInfo} >Update Info</button>
+      <div className="updateuserinfo">
+        <div className="updatephoto">
+          <fig className="profilephoto" >
+            <img src={this.state.user_image} alt={this.props.username}/>
+          </fig>
+        <p>your profile photo</p>
+        </div>
+        <div className="updatetext">
+          <p>update profile photo</p>
+          <input
+            type="text"
+            value={this.state.user_image}
+            onChange={(e) => this.handleChange('user_image', e.target.value)}
+          />
+          <p>update username</p>
+          <input
+            placeholder="username"
+            value={this.state.username}
+          />
+
+          <p>update email address</p>
+          <input
+            placeholder="email"
+            value={this.state.email}
+          />
+          
+          <button onClick={this.updateUserInfo} >Update Info</button>
+        </div>
 
 
       </div>

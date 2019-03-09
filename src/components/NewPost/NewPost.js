@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux';
 import axios from 'axios';
 import {updateUser} from '../../ducks/reducer';
+import './NewPost.css'
 
 
 class NewPost extends Component {
@@ -60,9 +61,7 @@ class NewPost extends Component {
     let timestampFormat = new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit'}).format(this.state.now)
 
     return (
-      <div>
-        <h1>New Post Component</h1>
-
+      <div className="newpost">
         <div>
           <p>post title</p>
           <input
@@ -70,18 +69,6 @@ class NewPost extends Component {
             placeholder="Post Title"
             onChange={(e) => this.handleChange('post_title', e.target.value)}
           />
-        </div>
-
-        <div>
-          <p>post</p>
-          <input
-            type="text"
-            placeholder="post"
-            onChange={(e) => this.handleChange('post_text', e.target.value)}
-          />
-        </div>
-
-        <div>
           <p>image</p>
           <input
             type="text"
@@ -89,14 +76,23 @@ class NewPost extends Component {
             onChange={(e) => this.handleChange('post_image', e.target.value)}
           />
         </div>
-
         <div>
-          <p>{timestampFormat}</p>
+          <div>
+            <p>post</p>
+            <input
+              style={{"width":"50%", "height":"10rem"}}
+              type="text"
+              placeholder="post"
+              onChange={(e) => this.handleChange('post_text', e.target.value)}
+            />
+          </div>
+
+          <div>
+            <p>{timestampFormat}</p>
+          </div>
+          <button onClick={this.createPost} >Create New entry</button>
+          <button onClick={() => this.props.history.push('/journal')} >Cancel</button>
         </div>
-
-        <button onClick={this.createPost} >Create New entry</button>
-
-        <button onClick={() => this.props.history.push('/journal')} >Cancel</button>
       </div>
      );
   }

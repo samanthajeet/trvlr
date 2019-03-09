@@ -1,0 +1,36 @@
+
+.newpost {
+  border: 2px solid green;
+  width: 100%;
+  height: 65%;
+  display: flex;
+  
+
+}
+
+
+.newpost input {
+  border: 1px solid gray;
+  padding-left: 1.5rem;
+  margin: 1%;
+  height: 2.5rem;
+  width: 20rem;
+  margin-bottom: 1rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 200;
+}
+
+
+
+.newpost button {
+  font-size: 15px;
+  font-family: 'Roboto', sans-serif;
+  text-transform: lowercase;
+  font-weight: 400 ;
+  color: white;
+  background: #FFAA00;
+  border: none;
+  margin: 1%;
+  height: 2.5rem;
+  width: 15rem;
+}

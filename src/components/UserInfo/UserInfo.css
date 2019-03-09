@@ -1,0 +1,63 @@
+.updateuserinfo {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+.updatephoto{
+  display: flex;
+  flex-direction: column;
+  margin-right: 1rem;
+
+}
+
+.updatetext {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.updatetext input {
+  border: 1px solid gray;
+  padding-left: 1.5rem;
+  margin: 1%;
+  height: 2.5rem;
+  width: 20rem;
+  margin-bottom: 1rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 200;
+}
+
+
+.updatetext button {
+  font-size: 15px;
+  font-family: 'Roboto', sans-serif;
+  text-transform: lowercase;
+  font-weight: 400 ;
+  color: white;
+  background: #FFAA00;
+  border: none;
+  margin: 1%;
+  height: 2.5rem;
+  width: 15rem;
+}
+
+
+.updatephoto{
+  width: 20rem;
+  height: 20rem;
+}
+
+.profilephoto {
+  height: 100%;
+  width: 100%;
+}
+
+.profilephoto img {
+  width: 100%;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
