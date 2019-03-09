@@ -55,9 +55,9 @@ module.exports = {
 
   updateUserInfo: async (req, res) => {
     const {user_id} = req.session.user
-    const {user_image} = req.body
+    const {user_image, username} = req.body
     const db = req.app.get('db')
-    let updateUser = await db.auth.update_user({user_image, user_id})
+    let updateUser = await db.auth.update_user({user_image, user_id, username})
     res.status(200).send(updateUser)
   
   }

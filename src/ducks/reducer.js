@@ -16,10 +16,10 @@ export function updateUser(user) {
   }
 }
 
-export function updateUserInfo(user_image){
+export function updateUserInfo(user_image, username){
   return {
     type: UPDATE_USER_INFO,
-    payload: user_image
+    payload: user_image, username
   }
 }
 
@@ -38,7 +38,7 @@ export default function reducer(state=initialState, action) {
       const {user_id, email, user_image, username} = payload
       return {...state, user_id, username, email, user_image }
     case UPDATE_USER_INFO:
-      return {...state, user_image}
+      return {...state, user_image, username}
     case CLEAR_USER:
       return {...state, id: 0, username: '', email: '', user_image: ''}
     default:

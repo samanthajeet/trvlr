@@ -8,20 +8,21 @@ class UserInfo extends Component {
   constructor(props){
     super(props);
     this.state = {
-      user_image: '',
-      username: '',
-      email: ''
+      user_image: this.props.user_image,
+      username: this.props.username,
+      email: this.props.email
     }
   }
 
   componentDidMount(){
+    console.log(1111,this.props)
     this.getUser()
-
+    console.log(2222,this.props)
+    console.log(333,this.state)
   }
 
   getUser = async () => {
     const {user_id} = this.props
-    console.log(user_id)
     if(!user_id) {
       try {
         let response = await axios.get('/auth/isLoggedIn')
@@ -46,8 +47,8 @@ class UserInfo extends Component {
   }
 
   updateUserInfo = () => {
-    const { user_image } = this.state
-    axios.put('/auth/userInfo', {user_image}).then( response => {
+    const { user_image, username } = this.state
+    axios.put('/auth/userInfo', {user_image, username}).then( response => {
       console.log(response)
       this.props.history.push('/dashboard')
       this.props.updateUserInfo(user_image)
@@ -55,8 +56,7 @@ class UserInfo extends Component {
   }
 
   render() { 
-
-    console.log(this.props)
+    
     return ( 
       <div className="updateuserinfo">
         <div className="updatephoto">
@@ -76,6 +76,7 @@ class UserInfo extends Component {
           <input
             placeholder="username"
             value={this.state.username}
+            onChange={(e) => this.handleChange('username', e.target.value)}
           />
 
           <p>update email address</p>
