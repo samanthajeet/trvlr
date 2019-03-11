@@ -56,6 +56,10 @@ app.put(`/journal/edit/:post_id`, journalCtrl.editPost)
 app.post('/journal/createPost', journalCtrl.createPost);
 app.delete('/journal/:post_id', journalCtrl.deletePost);
 
+//COMMUNITY ENDPOINTS
+const communityCtrl = require('./controllers/communityController')
+app.get(`/community/getAllUsers`, communityCtrl.getAllUsers )
+
 //PUBLIC ENDPOINTS
 const publicCtrl = require('./controllers/publicController')
 app.get(`/publicProfile/user/:user_id`, publicCtrl.getPublicProfile)
