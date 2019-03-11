@@ -1,26 +1,43 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import {connect} from 'react-redux'
 
 class Post extends Component {
   constructor(props){
     super(props)
     this.state = {
-      post: []
+      post: [],
+      userIdMatch: false
     }
   }
 
   componentDidMount(){
-    console.log(this.props)
+    this.getPost()
+  }
+
+  getPost(){
     axios.get(`/journal/${this.props.match.params.post_id}`).then( response => {
       this.setState({
         post: response.data
       })
     })
+    this.checkUserIdMatch()
   }
-
+  
+  checkUserIdMatch(){
+    const {user_id} = this.state.post
+    if(user_id === this.props.user_id){
+      this.setState({
+        userIdMatch: true
+      })
+    }
+  }
+  
   render() { 
-    console.log(this.state.post)
-    const { post_title, post_text, post_image1, username } = this.state.post
+    console.log(11111,this.state.post.user_id)
+    console.log(22222,this.props.user_id)
+    console.log(33333, this.state.userIdMatch)
+    const { post_title, post_text, post_image1, username} = this.state.post
     return ( 
       <div>
         <h1>{post_title}</h1>
@@ -30,9 +47,19 @@ class Post extends Component {
         <button onClick={() => this.props.history.push('/dashboard')} >go back to your dashboard</button>
 
         <button onClick={() => this.props.history.push('/journal')} >go back to your journal</button>
+        {this.state.userIdMatch? (
+          <button >edit</button>
+          ) : (
+              null
+          )}
+        
       </div>
      );
   }
 }
+
+const mapSTateToProps = (reduxState) => {
+  return reduxState
+}
  
-export default Post;
+export default connect(mapSTateToProps)(Post);

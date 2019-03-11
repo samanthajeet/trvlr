@@ -58,6 +58,8 @@ class Journal extends Component {
 
   
 
+  
+
   render() {
     let mappedPosts = this.state.userPosts.map( post => {
       return (
