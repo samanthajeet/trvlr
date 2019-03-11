@@ -40,8 +40,6 @@
      }
    },
 
-
-
    deletePost: (req, res) => {
     const db = req.app.get('db')
     const { post_id } = req.params;
@@ -52,6 +50,18 @@
     }).catch( err => {
       res.status(500).send(err)
     })
+  },
+  editPost: (req, res) => {
+    try{
+      const db = req.app.get('db');
+      const {post_id} =req.params;
+      const {post_title, post_text, post_image1} = req.body;
+      let response = db.journal.edit_post({post_id, post_title, post_text, post_image1});
+      res.status(200).send(response)
+    } catch(err) {
+      console.log(err)
+      res.status(500).send(err)
+    }
   }
 
  }

@@ -52,6 +52,7 @@ app.get('/journal/getUserPosts', journalCtrl.getUserPosts);
 app.get(`/journal/searchTitle`, journalCtrl.searchAllPosts);
 app.get(`/journal/:post_id`, journalCtrl.getPost);
 
+app.put(`/journal/edit/:post_id`, journalCtrl.editPost)
 app.post('/journal/createPost', journalCtrl.createPost);
 app.delete('/journal/:post_id', journalCtrl.deletePost);
 
