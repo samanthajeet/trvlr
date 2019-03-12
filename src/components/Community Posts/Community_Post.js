@@ -4,7 +4,7 @@ import './Community_Posts.css'
 
 
 export default function(props){
-  const {title, image1, text, authorImg, author, post_id } = props
+  const {title, image1, authorImg, author, post_id } = props
   return(
 
     <div className='communiytPost'>

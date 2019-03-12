@@ -1,0 +1,7 @@
+.communityUsers {
+  border: 2px solid blue;
+  width: 50%;
+}
+.communityUsers img {
+  height: 4rem;
+}

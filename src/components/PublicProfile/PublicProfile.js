@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import UserPosts from './../User_Posts/User_Posts';
 import axios from 'axios';
 import Avatar from '@material-ui/core/Avatar';
 

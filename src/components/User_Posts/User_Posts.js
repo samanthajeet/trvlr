@@ -5,7 +5,7 @@ import './UserPosts.css'
 class UserPosts extends Component {
   
   render() { 
-    const {title, image1, text,  author, post_id } = this.props
+    const {title, image1, text, post_id } = this.props
     return ( 
       <div className="userPost">
         <fig className="userpostimage">

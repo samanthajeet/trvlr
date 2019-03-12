@@ -50,7 +50,7 @@ class Register extends Component {
     return ( 
       <div className="register" >
         <fig className="register-image">
-        <img src="https://images.unsplash.com/photo-1519315868-60d544c31ece?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3034&q=80" />
+        <img src="https://images.unsplash.com/photo-1519315868-60d544c31ece?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3034&q=80" alt="trvlr register"/>
         </fig>
         <div className="register-input">
           <h1>trvlr</h1>

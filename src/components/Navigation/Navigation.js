@@ -6,7 +6,7 @@ import './Navigation.css'
 
 
 function Nav(props){
-  let pathname = props.location.pathname
+  // let pathname = props.location.pathname
   if(
         props.location.pathname !== '/'
         && props.location.pathname !== '/login' 

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import CommunityPost from '../Community Posts/Community_Post';
+import CommunityUsers from '../Community Members/CommunityMembers'
 
 import './Community.css'
 
@@ -10,12 +11,15 @@ class Community extends Component {
     super(props);
     this.state = {
       communityPosts: [],
-      search: ''
+      users: [],
+      search: '',
+      communityView: 'posts',
     }
   }
 
   componentDidMount(){
-    this.getCommunityPosts()
+    this.getCommunityPosts();
+    this.getUsers();
   }
 
   getCommunityPosts = async () => {
@@ -25,6 +29,19 @@ class Community extends Component {
         communityPosts: posts.data
       })
     } catch(err) {
+      console.log(err)
+    }
+  }
+
+  getUsers = async () => {
+    try{
+      let users = await axios.get(`/community/getAllUsers`)
+      this.setState({
+        users: users.data
+      })
+
+
+    }catch(err){
       console.log(err)
     }
   }
@@ -47,8 +64,28 @@ class Community extends Component {
       console.log(err)
     }
   } 
+
+  changeCommunityView(val) {
+    this.setState({
+      communityView: val
+    })
+  }
   
   render() { 
+    console.log(this.state.users)
+    let mappedUsers = this.state.users.map( user => {
+      return (
+        <div key={user.user_id}>
+          <CommunityUsers
+            username={user.username}
+            user_image={user.user_image}
+          />
+
+        </div>
+      )
+    })
+
+    console.log({mappedUsers})
     let mappedPosts = this.state.communityPosts.map( post => {
       return (
         <div key={post.post_id}>
@@ -64,12 +101,16 @@ class Community extends Component {
         </div>
       )
     })
+
+
     return ( 
       <div>
         <h2>
           <span className="trvlr" > trvlr </span>
           community
         </h2>
+        <button onClick={() => this.changeCommunityView('posts')} >posts</button>
+        <button onClick={() => this.changeCommunityView('people')} >people</button>
         <div className='search-posts'>
           <input
             type="text"
@@ -79,10 +120,13 @@ class Community extends Component {
           <button onClick={this.searchByTitle} >Search</button>
           <button onClick={this.getCommunityPosts} >Reset Search</button>
         </div>
-        <div className="community-posts">
-          {mappedPosts} 
+        {this.state.communityView === 'posts' ? (
+          <div className="community-posts">{mappedPosts}</div>
+        ): (
+          <div>{mappedUsers}</div>
+        ) }
+
         </div>
-      </div>
      );
   }
 }

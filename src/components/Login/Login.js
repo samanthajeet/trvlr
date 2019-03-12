@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import {connect} from 'react-redux';
-import {Rediret}  from 'react-router-dom'
+// import {Redirect}  from 'react-router-dom'
 import {updateUser} from '../../ducks/reducer';
 
 
@@ -45,7 +45,7 @@ class Login extends Component {
     return ( 
       <div className="login">
         <fig className="login-image">
-          <img src='https://images.unsplash.com/photo-1519315868-60d544c31ece?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3034&q=80' />
+          <img src='https://images.unsplash.com/photo-1519315868-60d544c31ece?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3034&q=80' alt="trvlr login"/>
         </fig>
         <div className="login-input">
           <h1>trvlr</h1>
