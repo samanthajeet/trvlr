@@ -72,7 +72,6 @@ class Community extends Component {
   }
   
   render() { 
-    console.log(this.state.users)
     let mappedUsers = this.state.users.map( user => {
       return (
         <div key={user.user_id}>
@@ -85,7 +84,6 @@ class Community extends Component {
       )
     })
 
-    console.log({mappedUsers})
     let mappedPosts = this.state.communityPosts.map( post => {
       return (
         <div key={post.post_id}>
@@ -111,17 +109,19 @@ class Community extends Component {
         </h2>
         <button onClick={() => this.changeCommunityView('posts')} >posts</button>
         <button onClick={() => this.changeCommunityView('people')} >people</button>
-        <div className='search-posts'>
-          <input
-            type="text"
-            placeholder="search post titles"
-            onChange={(e) => this.handleChange('search', e.target.value)}
-          />
-          <button onClick={this.searchByTitle} >Search</button>
-          <button onClick={this.getCommunityPosts} >Reset Search</button>
-        </div>
         {this.state.communityView === 'posts' ? (
-          <div className="community-posts">{mappedPosts}</div>
+          <div>
+            <div className="community-posts">{mappedPosts}</div>
+            <div className='search-posts'>
+              <input
+                type="text"
+                placeholder="search post titles"
+                onChange={(e) => this.handleChange('search', e.target.value)}
+              />
+              <button onClick={this.searchByTitle} >Search</button>
+              <button onClick={this.getCommunityPosts} >Reset Search</button>
+            </div>
+          </div>
         ): (
           <div>{mappedUsers}</div>
         ) }
