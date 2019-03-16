@@ -19,5 +19,19 @@ module.exports = {
       console.log(err)
       res.status(500).send(err)
     }
+  },
+
+  addFriend: async(req, res) => {
+    try {
+      const db = req.app.get('db');
+      const {user_id} = req.session.user;
+      const {friend_id} = req.body
+      let response = await db.community.add_friend({user_id, friend_id})
+      console.log('added', {friend_id})
+      res.status(200).send(response)
+    } catch(err) {
+      console.log(err)
+      res.status(500).send(err)
+    }
   }
 }

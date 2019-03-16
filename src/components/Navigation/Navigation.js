@@ -28,6 +28,7 @@ function Nav(props){
                   <Link to='/dashboard'>dashboard</Link>
                   <Link to='/journal'>journal</Link>
                   <Link to='/community'>trvlr community</Link>
+                  <Link to='/userCommunity'>your community</Link>
                 </div>
               </div>
             </div>
