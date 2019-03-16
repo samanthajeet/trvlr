@@ -29,7 +29,7 @@ class UserCommunity extends Component {
   render() { 
     let mappedFriends = this.state.friends.map( friend => {
       return (
-        <div key={friend.frien_id}>
+        <div key={friend.friend_id}>
           <p>{friend.username}</p>
           <img src={friend.user_image} alt={friend.username} style={{"width": 150}} />
         </div>
