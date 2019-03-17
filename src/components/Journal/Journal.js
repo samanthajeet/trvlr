@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {updateUser} from '../../ducks/reducer';
 import UserPosts from './../User_Posts/User_Posts';
 import { withRouter} from 'react-router-dom';
+import ReactLoading from 'react-loading';
 import './Journal.css'
 
 
@@ -12,7 +13,8 @@ class Journal extends Component {
     super(props)
       this.state = {
         user_id: null,
-        userPosts: []
+        userPosts: [],
+        loading: true
       }
 
       this.deletePost = this.deletePost.bind(this)
@@ -20,14 +22,18 @@ class Journal extends Component {
 
   componentDidMount() {
     this.getUser()
-    axios.get(`/journal/getUserPosts`).then( post => {
-      this.setState({
-        userPosts: post.data
-      })
-    })
-    // this.getUserPosts()
+    this.getUserPosts()
   }
 
+
+  getUserPosts(){
+    axios.get(`/journal/getUserPosts`).then( post => {
+      this.setState({
+        userPosts: post.data,
+        loading: false
+      })
+    })
+  }
 
 
   getUser = async () => {
@@ -78,18 +84,29 @@ class Journal extends Component {
     
 
     return ( 
-      <div className="journal">
-        <div className="alluserposts">
-        <div className="journal-sidebar">
-          <h2>You have <span style={{"color":"#FFAA00"}} >{mappedPosts.length}</span> entries</h2>
-          <button onClick={() => this.props.history.push('/newPost') } >New Entry</button>
-          <p>public profile: /publicProfile/{this.props.user_id}</p>
-        </div>
-          <div className="journaluserposts">
-            {mappedPosts} 
+
+      <div>
+        {this.state.loading ? (
+          <div>
+            <h1>Loading</h1>
+            <ReactLoading type='bubbles' color="#FFAA00" />
           </div>
-        </div>
+        ): (
+          <div className="journal">
+            <div className="alluserposts">
+            <div className="journal-sidebar">
+              <h2>You have <span style={{"color":"#FFAA00"}} >{mappedPosts.length}</span> entries</h2>
+              <button onClick={() => this.props.history.push('/newPost') } >New Entry</button>
+              <p>public profile: /publicProfile/{this.props.user_id}</p>
+            </div>
+              <div className="journaluserposts">
+                {mappedPosts} 
+              </div>
+            </div>
+          </div>
+        ) }
       </div>
+      
      );
   }
 }
