@@ -2,20 +2,24 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {updateUser} from '../../ducks/reducer';
 import Axios from 'axios';
-import CommunityPost from '../Community Posts/Community_Post'
-import './Dashboard.css'
+import CommunityPost from '../Community Posts/Community_Post';
+import ReactLoading from 'react-loading';
+import './Dashboard.css';
+
 
 class Dashboard extends Component {
   constructor(props){
     super(props);
     this.state = {
-      communityPosts: []
+      communityPosts: [],
+      loading: true
     }
   }
 
   componentDidMount(){
     this.getUser();
     this.getCommunityPosts();
+
   }
 
   getUser = async () => {
@@ -35,7 +39,8 @@ class Dashboard extends Component {
     try{
       let posts = await Axios.get('/journal/getAllCommunityPosts')
       this.setState({
-        communityPosts: posts.data
+        communityPosts: posts.data,
+        loading: false
       })
     } catch(err) {
       console.log(err)
@@ -66,12 +71,21 @@ class Dashboard extends Component {
     let mappedRecent = mappedPosts.slice(0,4)
     return ( 
       <div className="dashboard">
-        <h2>
-          recent entries from the<span style={{"color":"#FFAA00"}}> trvlr </span>community
-        </h2>
-        <div className="communityPostAll" >
-          {mappedRecent} 
-        </div>
+        {this.state.loading ? (
+          <div>
+            <h1>Loading</h1>
+            <ReactLoading type='bubbles' color="#FFAA00" />
+          </div>
+        ): (
+          <div>
+            <h2>
+              recent entries from the<span style={{"color":"#FFAA00"}}> trvlr </span>community
+            </h2>
+            <div className="communityPostAll" >
+              {mappedRecent} 
+            </div>
+          </div>
+        ) }
       </div>
      );
   }
