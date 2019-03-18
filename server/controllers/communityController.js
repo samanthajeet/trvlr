@@ -57,5 +57,18 @@ module.exports = {
       console.log(err)
       res.status(500).send(err)
     }
+  },
+
+  checkLikes: async (req, res) => {
+    try{
+      const db = req.app.get('db');
+      const {user_id} = req.session.user;
+      const {post_id} = req.params
+      let response = await db.community.check_likes({user_id, post_id})
+      res.status(200).send(response)
+    } catch(err){
+      console.log(err);
+      res.status(500).send(err)
+    }
   }
 }

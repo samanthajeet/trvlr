@@ -1,13 +1,38 @@
-import React from 'react';
+import React, {Component} from 'react';
+import axios from 'axios'
 import Avatar from '@material-ui/core/Avatar';
 import './Community_Posts.css'
 
+class Community_post extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      liked: false,
+    }
+  }
 
-export default function(props){
-  const {title, image1, authorImg, author, post_id, like_count, like_post } = props
-  return(
+  componentDidMount(){
+    this.checkLike()
+  }
 
-    <div className='communiytPost'>
+  checkLike = async () => {
+    try {
+      let response = await axios.get(`/community/likePost/checkLikes/${this.props.post_id}`)
+      if(response.data[0]){
+        this.setState({
+          liked:true
+        })
+      }
+    } catch(err) {
+      console.log(err)
+    }
+  }
+  
+
+  render() { 
+    const {title, image1, authorImg, author, post_id, like_count, like_post } = this.props
+    return ( 
+      <div className='communiytPost'>
       <fig className="communitypostimage">
         <img src={image1} alt={title}/>
       </fig>
@@ -20,15 +45,24 @@ export default function(props){
           <Avatar src={authorImg} alt={author} />
           <p>{author}</p>
         </div>
-        <button onClick={ () => props.history.push(`/journal/${post_id}`)}>view</button>
+        <button onClick={ () => this.props.history.push(`/journal/${post_id}`)}>view</button>
       </div>
       <div>
+
+
         <p>{like_count}</p>
-        <button onClick={ () => like_post(post_id)}> Like </button>
+
+        {this.state.liked ? (
+          <p>liked</p>
+        ): (
+          <button onClick={ () => like_post(post_id)}> Like </button>
+        )}
       </div>
 
     </div>
 
-
-  )
+    );
+  }
 }
+ 
+export default Community_post;
