@@ -4,7 +4,7 @@ import './Community_Posts.css'
 
 
 export default function(props){
-  const {title, image1, authorImg, author, post_id } = props
+  const {title, image1, authorImg, author, post_id, like_count } = props
   return(
 
     <div className='communiytPost'>
@@ -21,6 +21,9 @@ export default function(props){
           <p>{author}</p>
         </div>
         <button onClick={ () => props.history.push(`/journal/${post_id}`)}>view</button>
+      </div>
+      <div>
+        <p>{like_count}</p>
       </div>
 
     </div>

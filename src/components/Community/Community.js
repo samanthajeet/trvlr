@@ -25,6 +25,7 @@ class Community extends Component {
   getCommunityPosts = async () => {
     try{
       let posts = await axios.get('/journal/getAllCommunityPosts')
+      console.log(posts.data)
       this.setState({
         communityPosts: posts.data
       })
@@ -105,6 +106,7 @@ class Community extends Component {
             author={post.username}
             authorImg={post.user_image}
             post_id={post.post_id}
+            like_count={post.post_like}
             history={this.props.history} 
             />
         </div>

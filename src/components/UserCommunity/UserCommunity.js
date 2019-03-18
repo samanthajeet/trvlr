@@ -31,7 +31,6 @@ class UserCommunity extends Component {
   getFriendsPosts = async() => {
     try {
       let response = await axios.get(`/community/friendPosts`)
-      console.log(response.data)
       this.setState({
         friendsPosts: response.data
       })
