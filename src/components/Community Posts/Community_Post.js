@@ -4,7 +4,7 @@ import './Community_Posts.css'
 
 
 export default function(props){
-  const {title, image1, authorImg, author, post_id, like_count } = props
+  const {title, image1, authorImg, author, post_id, like_count, like_post } = props
   return(
 
     <div className='communiytPost'>
@@ -24,6 +24,7 @@ export default function(props){
       </div>
       <div>
         <p>{like_count}</p>
+        <button onClick={ () => like_post(post_id)}> Like </button>
       </div>
 
     </div>

@@ -62,6 +62,7 @@ app.get(`/community/getAllUsers`, communityCtrl.getAllUsers );
 app.get(`/community/friendList/`, communityCtrl.getFriendList);
 app.get(`/community/friendPosts`, communityCtrl.friendPosts)
 app.post(`/community/addfriend/`, communityCtrl.addFriend);
+app.post(`/community/likePost/:post_id`, communityCtrl.likePost)
 
 
 //PUBLIC ENDPOINTS

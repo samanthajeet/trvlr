@@ -80,6 +80,10 @@ class Community extends Component {
       communityView: val
     })
   }
+
+  likePost(post_id){
+    axios.post(`/community/likePost/${post_id}`)
+  }
   
   render() { 
     let mappedUsers = this.state.users.map( user => {
@@ -107,6 +111,7 @@ class Community extends Component {
             authorImg={post.user_image}
             post_id={post.post_id}
             like_count={post.post_like}
+            like_post={this.likePost}
             history={this.props.history} 
             />
         </div>
