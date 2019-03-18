@@ -129,7 +129,6 @@ class Community extends Component {
         <button onClick={() => this.changeCommunityView('people')} >people</button>
         {this.state.communityView === 'posts' ? (
           <div>
-            <div className="community-posts">{mappedPosts}</div>
             <div className='search-posts'>
               <input
                 type="text"
@@ -139,6 +138,7 @@ class Community extends Component {
               <button onClick={this.searchByTitle} >Search</button>
               <button onClick={this.getCommunityPosts} >Reset Search</button>
             </div>
+            <div className="community-posts">{mappedPosts}</div>
           </div>
         ): (
           <div>{mappedUsers}</div>
