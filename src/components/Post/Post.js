@@ -12,12 +12,10 @@ class Post extends Component {
   }
 
   componentWillMount(){
-    this.getPost()
+    this.getPost();
+    // this.checkUserIdMatch()
   }
 
-  // componentDidMount(){
-  //   this.checkUserIdMatch()
-  // }
 
   getPost(){
     axios.get(`/journal/${this.props.match.params.post_id}`).then( response => {
@@ -25,10 +23,9 @@ class Post extends Component {
         post: response.data
       })
     })
-    // this.checkUserIdMatch()
   }
   
-  // checkUserIdMatch(){
+  // checkUserIdMatch = () => {
   //   if(this.post.user_id === this.props.user_id){
   //     this.setState({
   //       userIdMatch: true
@@ -37,6 +34,8 @@ class Post extends Component {
   // }
   
   render() { 
+    console.log(this.state.post)
+    console.log(this.props.user_id)
     const { post_title, post_text, post_image1, username} = this.state.post
     return ( 
       <div>

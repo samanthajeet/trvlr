@@ -10,7 +10,8 @@ import Post from './components/Post/Post.js';
 import Community from './components/Community/Community';
 import UserInfo from './components/UserInfo/UserInfo';
 import PublicProfile from './components/PublicProfile/PublicProfile';
-import UserCommunity from './components/UserCommunity/UserCommunity'
+import UserCommunity from './components/UserCommunity/UserCommunity';
+import EditPost from './components/EditPost/EditPost'
 
 
 
@@ -21,6 +22,7 @@ export default (
     <Route path='/register' component={Register} />
     <Route path='/dashboard' component={Dashboard} />
     <Route path='/newPost' component={NewPost} />
+    <Route path='/editPost/:post_id' component={EditPost} />
     <Route path='/journal/:post_id' component={Post} />
     <Route path='/journal' component={Journal} />
     <Route path='/publicProfile/:user_id' component={PublicProfile} />

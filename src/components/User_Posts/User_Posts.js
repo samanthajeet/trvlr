@@ -13,6 +13,7 @@ class UserPosts extends Component {
         </fig>
         <div className="userposttext">
           <button onClick={ () => this.props.history.push(`/journal/${post_id}`)}>view</button>
+          <button onClick={ () => this.props.history.push(`/editPost/${post_id}`)}>edit</button>
           <button onClick={() => {this.props.delete(post_id)}}>delete</button>
           <h1>{title}</h1>
           <div className="posttext">
