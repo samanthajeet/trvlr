@@ -60,7 +60,9 @@ app.delete('/journal/:post_id', journalCtrl.deletePost);
 const communityCtrl = require('./controllers/communityController')
 app.get(`/community/getAllUsers`, communityCtrl.getAllUsers );
 app.get(`/community/friendList/`, communityCtrl.getFriendList);
-app.post(`/community/addfriend/`, communityCtrl.addFriend)
+app.get(`/community/friendPosts`, communityCtrl.friendPosts)
+app.post(`/community/addfriend/`, communityCtrl.addFriend);
+
 
 //PUBLIC ENDPOINTS
 const publicCtrl = require('./controllers/publicController')
