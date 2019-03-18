@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {updateUser} from '../../ducks/reducer';
-import Axios from 'axios';
+import axios from 'axios';
 import CommunityPost from '../Community Posts/Community_Post';
 import ReactLoading from 'react-loading';
 import './Dashboard.css';
@@ -11,14 +11,14 @@ class Dashboard extends Component {
   constructor(props){
     super(props);
     this.state = {
-      communityPosts: [],
+      friendsPosts: [],
       loading: true
     }
   }
 
   componentDidMount(){
     this.getUser();
-    this.getCommunityPosts();
+    this.getFriendsPosts();
 
   }
 
@@ -26,7 +26,7 @@ class Dashboard extends Component {
     const {user_id} = this.props
     if(!user_id) {
       try {
-        let response = await Axios.get('/auth/isLoggedIn')
+        let response = await axios.get('/auth/isLoggedIn')
         this.props.updateUser(response.data)
       } catch(err){
         this.props.history.push('/')
@@ -35,11 +35,11 @@ class Dashboard extends Component {
     }
   }
 
-  getCommunityPosts = async () => {
-    try{
-      let posts = await Axios.get('/journal/getAllCommunityPosts')
+  getFriendsPosts = async() => {
+    try {
+      let response = await axios.get(`/community/friendPosts`)
       this.setState({
-        communityPosts: posts.data,
+        friendsPosts: response.data,
         loading: false
       })
     } catch(err) {
@@ -47,11 +47,8 @@ class Dashboard extends Component {
     }
   }
 
-
- 
-
   render() { 
-    let mappedPosts = this.state.communityPosts.map( post => {
+    let mappedPosts = this.state.friendsPosts.map( post => {
       return (
         <div key={post.post_id}>
           <CommunityPost
@@ -62,30 +59,27 @@ class Dashboard extends Component {
             authorImg={post.user_image}
             post_id={post.post_id}
             history={this.props.history} 
-            
             />
         </div>
       )
     })
 
-    let mappedRecent = mappedPosts.slice(0,4)
+
     return ( 
-      <div className="dashboard">
+
+      
+      <div>
         {this.state.loading ? (
           <div>
             <h1>Loading</h1>
-            <ReactLoading type='bubbles' color="#FFAA00" />
+            <ReactLoading type='spinningBubbles' color="#FFAA00" />
           </div>
         ): (
           <div>
-            <h2>
-              recent entries from the<span style={{"color":"#FFAA00"}}> trvlr </span>community
-            </h2>
-            <div className="communityPostAll" >
-              {mappedRecent} 
-            </div>
+            {mappedPosts}
           </div>
         ) }
+
       </div>
      );
   }

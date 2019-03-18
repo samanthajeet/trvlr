@@ -24,8 +24,8 @@ function Nav(props){
               <div id="links">
                 <vl />
                 <div className="nav-links">
+                  <Link to='/dashboard'>home</Link>
                   <Link to='/userinfo'>account</Link>
-                  <Link to='/dashboard'>dashboard</Link>
                   <Link to='/journal'>journal</Link>
                   <Link to='/community'>trvlr community</Link>
                   <Link to='/userCommunity'>your community</Link>

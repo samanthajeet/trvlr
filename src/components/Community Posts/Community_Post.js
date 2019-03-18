@@ -8,6 +8,7 @@ class Community_post extends Component {
     super(props)
     this.state = {
       liked: false,
+      button: 'like'
     }
   }
 
@@ -27,10 +28,18 @@ class Community_post extends Component {
       console.log(err)
     }
   }
+
+  likePost(post_id) {
+    axios.post(`/community/likePost/${post_id}`)
+    this.setState({
+      liked: true
+    })
+  }
   
 
+
   render() { 
-    const {title, image1, authorImg, author, post_id, like_count, like_post } = this.props
+    const {title, image1, authorImg, author, post_id, like_count} = this.props
     return ( 
       <div className='communiytPost'>
       <fig className="communitypostimage">
@@ -48,14 +57,13 @@ class Community_post extends Component {
         <button onClick={ () => this.props.history.push(`/journal/${post_id}`)}>view</button>
       </div>
       <div>
-
-
-        <p>{like_count}</p>
-
         {this.state.liked ? (
-          <p>liked</p>
+          <p>you already liked this {this.state.button}</p>
         ): (
-          <button onClick={ () => like_post(post_id)}> Like </button>
+          <div>
+            <p>{like_count}</p>
+            <button onClick={ () => this.likePost(post_id)}> Like </button>
+          </div>
         )}
       </div>
 

@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import {connect} from 'react-redux';
+import {updateUser} from '../../ducks/reducer';
 import CommunityPost from '../Community Posts/Community_Post';
 import CommunityUsers from '../Community Members/CommunityMembers'
 
@@ -10,8 +12,10 @@ class Community extends Component {
   constructor(props){
     super(props);
     this.state = {
+      user_id: null,
       communityPosts: [],
       users: [],
+      user_search: '',
       search: '',
       communityView: 'posts',
     }
@@ -20,17 +24,33 @@ class Community extends Component {
   componentDidMount(){
     this.getCommunityPosts();
     this.getUsers();
+    this.getUser()
   }
 
   getCommunityPosts = async () => {
     try{
       let posts = await axios.get('/journal/getAllCommunityPosts')
-      console.log(posts.data)
       this.setState({
         communityPosts: posts.data
       })
     } catch(err) {
       console.log(err)
+    }
+  }
+
+  getUser = async () => {
+    const {user_id} = this.props
+    if(!user_id) {
+      try {
+        let response = await axios.get('/auth/isLoggedIn')
+        this.setState({
+          user_id: response.data.user_id
+        })
+        this.props.updateUser(response.data)
+      } catch(err){
+        this.props.history.push('/')
+        console.log(err)
+      }
     }
   }
 
@@ -81,12 +101,9 @@ class Community extends Component {
     })
   }
 
-  likePost(post_id){
-    axios.post(`/community/likePost/${post_id}`)
-  }
-  
+
   render() { 
-    let mappedUsers = this.state.users.map( user => {
+    let mappedUsers = this.state.users.filter( e => e.username.toLowerCase().includes(this.state.user_search) ).map( user => {
       return (
         <div key={user.user_id}>
           <CommunityUsers
@@ -111,7 +128,6 @@ class Community extends Component {
             authorImg={post.user_image}
             post_id={post.post_id}
             like_count={post.post_like}
-            like_post={this.likePost}
             history={this.props.history} 
             />
         </div>
@@ -120,6 +136,7 @@ class Community extends Component {
 
 
     return ( 
+
       <div>
         <h2>
           <span className="trvlr" > trvlr </span>
@@ -141,7 +158,15 @@ class Community extends Component {
             <div className="community-posts">{mappedPosts}</div>
           </div>
         ): (
-          <div>{mappedUsers}</div>
+          <div>
+            <input
+              type="text"
+              placeholder="search by username"
+              onChange={(e) => this.handleChange('user_search', e.target.value)}
+            />
+            <button>Search users</button>
+            {mappedUsers}
+          </div>
         ) }
 
         </div>
@@ -149,4 +174,12 @@ class Community extends Component {
   }
 }
  
-export default Community;
+const mapStateToProps = (reduxState) => {
+  return reduxState
+}
+
+const mapDispatchToProps = {
+  updateUser
+}
+ 
+export default connect(mapStateToProps, mapDispatchToProps)(Community);
