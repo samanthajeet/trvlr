@@ -11,7 +11,9 @@ import Community from './components/Community/Community';
 import UserInfo from './components/UserInfo/UserInfo';
 import PublicProfile from './components/PublicProfile/PublicProfile';
 import UserCommunity from './components/UserCommunity/UserCommunity';
-import EditPost from './components/EditPost/EditPost'
+import EditPost from './components/EditPost/EditPost';
+import Test from './components/Test/test'
+
 
 
 
@@ -29,5 +31,7 @@ export default (
     <Route path='/community' component={Community} />
     <Route path='/userCommunity' component={UserCommunity} />
     <Route path='/userinfo' component={UserInfo} />
+    <Route path='/test' component={Test} />
+
   </Switch>
 )

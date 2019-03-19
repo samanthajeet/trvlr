@@ -1,64 +1,86 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux';
-import axios from 'axios';
-import {updateUser} from '../../ducks/reducer';
-import './NewPost.css'
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import axios from "axios";
+import { updateUser } from "../../ducks/reducer";
+import Quill from '../Quill/Quill'
 
+import "./NewPost.css";
 
 class NewPost extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       user_id: this.props.user_id,
-      post_title: '',
-      post_text: '',
-      post_image: '',
+      post_title: "",
+      post_text: "",
+      post_image: "",
       now: new Date(),
-    }
+      isUploading: false,
+      url: "http://via.placeholder.com/200x200"
+    };
+
+    this.setText = this.setText.bind(this)
   }
 
-  componentDidMount(){
-    this.getUser()
+  componentDidMount() {
+    this.getUser();
   }
 
   getUser = async () => {
-    const {user_id} = this.props
-    if(!user_id) {
+    const { user_id } = this.props;
+    if (!user_id) {
       try {
-        let response = await axios.get('/auth/isLoggedIn')
-        console.log(response)
-      } catch(err){
-        console.log(err)
+        let response = await axios.get("/auth/isLoggedIn");
+        console.log(response);
+      } catch (err) {
+        console.log(err);
       }
     }
-  }
+  };
 
-  createPost = async() => {
-    const {user_id} = this.props
-    const {post_title, post_text, post_image} = this.state
-    let post = {user_id,post_title, post_text, post_image}
+  createPost = async () => {
+    console.log(this.state)
+    const { user_id } = this.props;
+    const { post_title, post_text, post_image } = this.state;
+    let post = { user_id, post_title, post_text, post_image };
     try {
-      let response = await axios.post('/journal/createPost', post )
-      this.props.history.push('/journal')
-    } catch(err){
-      console.log(err)
+      let response = await axios.post("/journal/createPost", post);
+      this.props.history.push("/journal");
+    } catch (err) {
+      console.log(err);
     }
-    
+  };
+
+  formatTime() {
+    let date = new Intl.DateTimeFormat("en-US", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit"
+    }).format(this.state.now);
+    return date;
   }
 
-  formatTime(){
-    let date = new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit'}).format(this.state.now)
-    return date
-  }
-
-
-  handleChange(prop, val){
+  handleChange(prop, val) {
     this.setState({
-      [prop] : val
+      [prop]: val
+    });
+  }
+
+  setText(text){
+    this.setState({
+      post_text: text
     })
   }
-  render() { 
-    let timestampFormat = new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit'}).format(this.state.now)
+
+
+
+
+  render() {
+    let timestampFormat = new Intl.DateTimeFormat("en-US", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit"
+    }).format(this.state.now);
 
     return (
       <div className="newpost">
@@ -67,44 +89,58 @@ class NewPost extends Component {
           <input
             type="text"
             placeholder="Post Title"
-            onChange={(e) => this.handleChange('post_title', e.target.value)}
+            onChange={e => this.handleChange("post_title", e.target.value)}
           />
           <p>image</p>
           <input
             type="text"
             placeholder="image_urls"
-            onChange={(e) => this.handleChange('post_image', e.target.value)}
+            onChange={e => this.handleChange("post_image", e.target.value)}
+          />
+          <img
+            src={this.state.post_image}
+            alt={this.state.post_title}
+            style={{
+              "width": 200
+            }}
           />
         </div>
         <div>
           <div>
             <p>post</p>
-            <input
-              style={{"width":"50%", "height":"10rem"}}
+            <Quill
+              setText={this.setText}
+            />
+            {/* <input
+              style={{ width: "50%", height: "10rem" }}
               type="text"
               placeholder="post"
-              onChange={(e) => this.handleChange('post_text', e.target.value)}
-            />
+              onChange={e => this.handleChange("post_text", e.target.value)}
+            /> */}
           </div>
 
           <div>
             <p>{timestampFormat}</p>
           </div>
-          <button onClick={this.createPost} >Create New entry</button>
-          <button onClick={() => this.props.history.push('/journal')} >Cancel</button>
         </div>
+          <button onClick={this.createPost}>Create New entry</button>
+          <button onClick={() => this.props.history.push("/journal")}>
+            Cancel
+          </button>
       </div>
-     );
+    );
   }
 }
- 
-const mapStateToProps = (reduxState) => {
-  return reduxState
-}
+
+const mapStateToProps = reduxState => {
+  return reduxState;
+};
 
 const mapDispatchToProps = {
   updateUser
-}
- 
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewPost);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NewPost);

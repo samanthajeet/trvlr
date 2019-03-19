@@ -21,7 +21,6 @@ class EditPost extends Component {
 
   getPost(){
     axios.get(`/journal/${this.props.match.params.post_id}`).then( response => {
-      console.log(response.data)
       let {post_id, post_title, post_image1, post_text} = response.data
       this.setState({
         post_id,
@@ -42,7 +41,6 @@ class EditPost extends Component {
     const {post_id, post_title, post_image1 } = this.state
     let editedPost = {post_title, post_image1}
     axios.put(`/journal/edit/${post_id}`, editedPost).then(response => {
-      console.log({response})
     })
     this.props.history.push(`/journal`)
   }
