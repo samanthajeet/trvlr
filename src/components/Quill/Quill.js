@@ -93,7 +93,7 @@ class Quill extends React.Component {
           value={this.state.test_text}
           placeholder="your next great post starts here" 
           style={{
-            "height": "300px",
+            "height": "400px",
           }}
         />
         {/* <button onClick={() => this.saveText()} >save post</button> */}

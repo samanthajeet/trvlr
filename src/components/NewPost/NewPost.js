@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
 import { updateUser } from "../../ducks/reducer";
-import { v4 as randomString } from 'uuid';
-import Dropzone from 'react-dropzone';
-import { GridLoader } from 'react-spinners';
-import Quill from '../Quill/Quill'
+import { v4 as randomString } from "uuid";
+import Dropzone from "react-dropzone";
+import { GridLoader } from "react-spinners";
+import Quill from "../Quill/Quill";
 
 import "./NewPost.css";
 
@@ -16,13 +16,13 @@ class NewPost extends Component {
       user_id: this.props.user_id,
       post_title: "",
       post_text: "",
-      post_image: '',
+      post_image: "",
       now: new Date(),
       isUploading: false,
       url: "http://via.placeholder.com/200x200"
     };
 
-    this.setText = this.setText.bind(this)
+    this.setText = this.setText.bind(this);
   }
 
   componentDidMount() {
@@ -42,7 +42,7 @@ class NewPost extends Component {
   };
 
   createPost = async () => {
-    console.log(this.state)
+    console.log(this.state);
     const { user_id } = this.props;
     const { post_title, post_text, post_image } = this.state;
     let post = { user_id, post_title, post_text, post_image };
@@ -69,23 +69,23 @@ class NewPost extends Component {
     });
   }
 
-  setText(text){
+  setText(text) {
     this.setState({
       post_text: text
-    })
+    });
   }
   getSignedRequest = ([file]) => {
     this.setState({ isUploading: true });
     // We are creating a file name that consists of a random string, and the name of the file that was just uploaded with the spaces removed and hyphens inserted instead. This is done using the .replace function with a specific regular expression. This will ensure that each file uploaded has a unique name which will prevent files from overwriting other files due to duplicate names.
-    const fileName = `${randomString()}-${file.name.replace(/\s/g, '-')}`;
+    const fileName = `${randomString()}-${file.name.replace(/\s/g, "-")}`;
 
     // We will now send a request to our server to get a "signed url" from Amazon. We are essentially letting AWS know that we are going to upload a file soon. We are only sending the file-name and file-type as strings. We are not sending the file itself at this point.
     axios
-      .get('/api/signs3', {
+      .get("/api/signs3", {
         params: {
-          'file-name': fileName,
-          'file-type': file.type,
-        },
+          "file-name": fileName,
+          "file-type": file.type
+        }
       })
       .then(response => {
         const { signedRequest, url } = response.data;
@@ -99,8 +99,8 @@ class NewPost extends Component {
   uploadFile = (file, signedRequest, url) => {
     const options = {
       headers: {
-        'Content-Type': file.type,
-      },
+        "Content-Type": file.type
+      }
     };
 
     axios
@@ -110,9 +110,9 @@ class NewPost extends Component {
         // THEN DO SOMETHING WITH THE URL. SEND TO DB USING POST REQUEST OR SOMETHING
       })
       .catch(err => {
-        console.log(err)
+        console.log(err);
         this.setState({
-          isUploading: false,
+          isUploading: false
         });
         if (err) {
           alert(
@@ -126,8 +126,6 @@ class NewPost extends Component {
       });
   };
 
-
-
   render() {
     const { url, isUploading } = this.state;
     let timestampFormat = new Intl.DateTimeFormat("en-US", {
@@ -138,34 +136,7 @@ class NewPost extends Component {
 
     return (
       <div className="newpost">
-      <div>
-      <h1>Upload</h1>
-        <h1>{url}</h1>
-        <img src={url} alt="" width="200px" />
-
-        <Dropzone
-          onDropAccepted={this.getSignedRequest}
-          style={{
-            position: 'relative',
-            width: 200,
-            height: 200,
-            borderWidth: 7,
-            marginTop: 100,
-            borderColor: 'rgb(102, 102, 102)',
-            borderStyle: 'dashed',
-            borderRadius: 5,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            fontSize: 28,
-          }}
-          accept="image/*"
-          multiple={false}
-        >
-          {isUploading ? <GridLoader /> : <p>Drop File or Click Here</p>}
-        </Dropzone>
-      </div>
-        <div>
+        <div className="upperEdit">
           <p>post title</p>
           <input
             type="text"
@@ -178,36 +149,52 @@ class NewPost extends Component {
             placeholder="image_urls"
             onChange={e => this.handleChange("post_image", e.target.value)}
           />
+          <Dropzone
+            onDropAccepted={this.getSignedRequest}
+            style={{
+              position: "relative",
+              width: 200,
+              height: 100,
+              borderWidth: 7,
+              marginTop: 100,
+              borderColor: "rgb(102, 102, 102)",
+              borderStyle: "dashed",
+              borderRadius: 5,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              fontSize: 28
+            }}
+            accept="image/*"
+            multiple={false}
+          >
+            {isUploading ? <GridLoader /> : <p>Drop File or Click Here</p>}
+          </Dropzone>
           <img
             src={this.state.post_image}
             alt={this.state.post_title}
             style={{
-              "width": 200
+              "width": "200px",
+              "height": "200px"
+      
             }}
           />
         </div>
-        <div>
+        <div className="Quill">
           <div>
             <p>post</p>
-            <Quill
-              setText={this.setText}
-            />
-            {/* <input
-              style={{ width: "50%", height: "10rem" }}
-              type="text"
-              placeholder="post"
-              onChange={e => this.handleChange("post_text", e.target.value)}
-            /> */}
+            <Quill setText={this.setText} />
           </div>
-
           <div>
             <p>{timestampFormat}</p>
           </div>
         </div>
+        <div className="newpostbtn">
           <button onClick={this.createPost}>Create New entry</button>
           <button onClick={() => this.props.history.push("/journal")}>
             Cancel
           </button>
+        </div>
       </div>
     );
   }
