@@ -68,17 +68,21 @@ class Dashboard extends Component {
     return ( 
 
       
-      <div>
-        {this.state.loading ? (
-          <div>
-            <h1>Loading</h1>
-            <ReactLoading type='spinningBubbles' color="#FFAA00" />
+      <div className="dashboard">
+        
+        <div className="dashboardPosts">
+          {this.state.loading ? (
+            <div>
+              <h1>Loading</h1>
+              <ReactLoading type='spinningBubbles' color="#FFAA00" />
+            </div>
+          ): (
+            <div>
+              <h2>while you were gone</h2>
+              {mappedPosts}
+            </div>
+          ) }
           </div>
-        ): (
-          <div>
-            {mappedPosts}
-          </div>
-        ) }
 
       </div>
      );

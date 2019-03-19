@@ -15,14 +15,12 @@ function Nav(props){
       ){
       return (
         <div className='Nav'>
-          <div className='profile-nav'>
-            <fig className="profile-image">
+            <div className="profile-image">
               <img src={props.user_image} alt={props.username} />
-            </fig>
+            </div>
             <div className="greeting-links">
               <h1>Aloha, <span style={{"color": "#FFAA00"}} >{props.username}!</span></h1>
               <div id="links">
-                <vl />
                 <div className="nav-links">
                   <Link to='/dashboard'>home</Link>
                   <Link to='/userinfo'>account</Link>
@@ -32,7 +30,7 @@ function Nav(props){
                 </div>
               </div>
             </div>
-          </div>
+
           <button className="logout" onClick={props.logout} >Log Out</button>
         </div>
       ) 

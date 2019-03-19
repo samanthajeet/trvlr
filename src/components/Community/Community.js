@@ -137,13 +137,11 @@ class Community extends Component {
 
     return ( 
 
-      <div>
-        <h2>
-          <span className="trvlr" > trvlr </span>
-          community
-        </h2>
-        <button onClick={() => this.changeCommunityView('posts')} >posts</button>
-        <button onClick={() => this.changeCommunityView('people')} >people</button>
+      <div className="community">
+        <div>
+          <button onClick={() => this.changeCommunityView('posts')} >posts</button>
+          <button onClick={() => this.changeCommunityView('people')} >people</button>
+        </div>
         {this.state.communityView === 'posts' ? (
           <div>
             <div className='search-posts'>
@@ -158,14 +156,18 @@ class Community extends Component {
             <div className="community-posts">{mappedPosts}</div>
           </div>
         ): (
-          <div>
+          <div className="communityusers-container">
+          <div className="searchUsers">
             <input
               type="text"
               placeholder="search by username"
               onChange={(e) => this.handleChange('user_search', e.target.value)}
             />
             <button>Search users</button>
+          </div>
+            <div className="communityusers">
             {mappedUsers}
+            </div>
           </div>
         ) }
 

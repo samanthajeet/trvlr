@@ -85,7 +85,7 @@ class Journal extends Component {
 
     return ( 
 
-      <div>
+      <div className='journalLanding'> 
         {this.state.loading ? (
           <div>
             <h1>Loading</h1>

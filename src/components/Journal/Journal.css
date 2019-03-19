@@ -4,18 +4,18 @@
   box-sizing: border-box;
   padding: 0;
 }
+.journalLanding {
+  width: 75%;
+}
+
 
 .alluserposts {
-
   width: 100%;
-  height: 100%;
+  height: 90vh;
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
 }
 
-.alluserposts{
-  display: flex;
-}
 
 .journal-sidebar {
   /* border: 2px solid red; */
@@ -54,8 +54,7 @@
 }
 
 .journaluserposts {
-  /* border: 2px solid green; */
-  height: 65vh;
+  height: 100%;
   width: 100%;
   display: flex;
   flex-wrap: wrap;

@@ -34,8 +34,6 @@ class Post extends Component {
   // }
   
   render() { 
-    console.log(this.state.post)
-    console.log(this.props.user_id)
     const { post_title, post_text, post_image1, username} = this.state.post
     return ( 
       <div>
