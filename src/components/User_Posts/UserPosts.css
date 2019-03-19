@@ -7,11 +7,10 @@
 }
 
 .userPost {
-  width: 35rem;;
+  width: 30rem;;
   height: 15rem;
   border: 1px solid #FFAA00;
-  margin-bottom: 1rem;
-  margin-right: 2rem;
+  margin: 0.5rem;
   padding: 0.5rem;
   display: flex;
   animation-name: fade-in;

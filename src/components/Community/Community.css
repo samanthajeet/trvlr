@@ -8,6 +8,7 @@
 .community-posts {
   height: 80vh;
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   overflow-y: scroll; 
   overflow-x:hidden
@@ -55,4 +56,13 @@
   height: 1.5rem;
   width: 5rem;
   margin-left: 0.5rem;
+}
+
+.community h2 {
+  font-size: 1.5rem;
+  font-family: 'Roboto', sans-serif;
+  text-transform: lowercase;
+  font-weight: 200;
+  color: gray;
+  text-align: right;
 }

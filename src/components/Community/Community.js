@@ -144,6 +144,7 @@ class Community extends Component {
         </div>
         {this.state.communityView === 'posts' ? (
           <div>
+            <h2>posts from the <span style={{"color":"#FFAA00"}} >trvlr</span> community</h2>
             <div className='search-posts'>
               <input
                 type="text"
