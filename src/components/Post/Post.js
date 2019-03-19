@@ -42,7 +42,10 @@ class Post extends Component {
         <h1>{post_title}</h1>
         <h4>by {username}</h4>
         <img src={post_image1} alt={post_title} />
-        <p>{post_text}</p>
+        <div dangerouslySetInnerHTML={{__html: post_text }} />
+          
+
+
         <button onClick={() => this.props.history.push('/dashboard')} >go back to your dashboard</button>
 
         <button onClick={() => this.props.history.push('/journal')} >go back to your journal</button>
