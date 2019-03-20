@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
+import './Post.css'
 
 class Post extends Component {
   constructor(props){
@@ -36,23 +37,25 @@ class Post extends Component {
   render() { 
     const { post_title, post_text, post_image1, username} = this.state.post
     return ( 
-      <div>
-        <h1>{post_title}</h1>
-        <h4>by {username}</h4>
-        <img src={post_image1} alt={post_title} />
-        <div dangerouslySetInnerHTML={{__html: post_text }} />
-          
-
-
-        <button onClick={() => this.props.history.push('/dashboard')} >go back to your dashboard</button>
-
-        <button onClick={() => this.props.history.push('/journal')} >go back to your journal</button>
-        {this.state.userIdMatch? (
-          <button >edit</button>
-          ) : (
-              null
-          )}
+      <div className="post-container">
+        <div className="post">
+          <h1>{post_title}</h1>
+          <h4>by {username}</h4>
+          <div className="postimage">
+            <img src={post_image1} alt={post_title} />
+          </div>
         
+          <div dangerouslySetInnerHTML={{__html: post_text }} className="post-text" />
+            
+          </div>
+          <div className="postbtns">
+            <button onClick={() => window.history.back()} >go back </button>
+            {this.state.userIdMatch? (
+              <button >edit</button>
+              ) : (
+                  null
+              )}
+          </div>
       </div>
      );
   }

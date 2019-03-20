@@ -19,7 +19,9 @@ class NewPost extends Component {
       post_image: "",
       now: new Date(),
       isUploading: false,
-      url: "http://via.placeholder.com/200x200"
+      url: "http://via.placeholder.com/200x200",
+      post_city: '',
+      post_country: '',
     };
 
     this.setText = this.setText.bind(this);
@@ -44,8 +46,8 @@ class NewPost extends Component {
   createPost = async () => {
     console.log(this.state);
     const { user_id } = this.props;
-    const { post_title, post_text, post_image } = this.state;
-    let post = { user_id, post_title, post_text, post_image };
+    const { post_title, post_text, post_image, post_city, post_country } = this.state;
+    let post = { user_id, post_title, post_text, post_image, post_city, post_country };
     try {
       let response = await axios.post("/journal/createPost", post);
       this.props.history.push("/journal");
@@ -144,6 +146,18 @@ class NewPost extends Component {
             type="text"
             placeholder="Post Title"
             onChange={e => this.handleChange("post_title", e.target.value)}
+          />
+          <p>city</p>
+          <input
+            type="text"
+            placeholder="city"
+            onChange={e => this.handleChange("post_city", e.target.value)}
+          />
+          <p>country</p>
+          <input
+            type="text"
+            placeholder="country"
+            onChange={e => this.handleChange("post_country", e.target.value)}
           />
           <p>image</p>
           <input

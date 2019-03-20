@@ -46,7 +46,7 @@ class Community_post extends Component {
 
 
   render() { 
-    const {title, image1, authorImg, author, post_id, like_count} = this.props
+    const {title, image1, authorImg, author, post_id, like_count, post_city, post_country} = this.props
     return ( 
       <div className='communiytPost'>
       <fig className="communitypostimage">
@@ -61,6 +61,7 @@ class Community_post extends Component {
           <Avatar src={authorImg} alt={author} />
           <p>{author}</p>
         </div>
+        <p>{post_city}, {post_country}</p>
         <button onClick={ () => this.props.history.push(`/journal/${post_id}`)}>view</button>
       </div>
       <div>

@@ -14,8 +14,8 @@
    createPost: async (req,res) => {
      const db = req.app.get('db')
      const {user_id} = req.session.user
-     const {post_title, post_text, post_image, post_date} = req.body
-     let createPost = await db.journal.create_post({user_id, post_title, post_text, post_image, post_date})
+     const {post_title, post_text, post_image, post_date,post_city, post_country} = req.body
+     let createPost = await db.journal.create_post({user_id, post_title, post_text, post_image, post_date, post_city, post_country})
      res.status(200).send(createPost)
    },
    getPost: (req, res) => {

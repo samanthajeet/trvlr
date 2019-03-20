@@ -130,6 +130,8 @@ class Community extends Component {
             authorImg={post.user_image}
             post_id={post.post_id}
             like_count={post.post_like}
+            post_city={post.post_city}
+            post_country={post.post_country}
             history={this.props.history} 
             />
         </div>
