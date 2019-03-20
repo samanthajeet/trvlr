@@ -35,6 +35,13 @@ class Community_post extends Component {
       liked: true
     })
   }
+
+  unlikePost(post_id){
+    axios.delete(`/community/unlikePost/${post_id}`)
+    this.setState({
+      liked: false
+    })
+  }
   
 
 
@@ -58,11 +65,8 @@ class Community_post extends Component {
       </div>
       <div>
 
-        
-
-
         {this.state.liked ? (
-          <i class="fas fa-thumbs-up"></i>
+          <button onClick={ () => this.unlikePost(post_id)}> <i class="fas fa-thumbs-up"></i></button>
         ): (
           <div>
             <p>{like_count}</p>

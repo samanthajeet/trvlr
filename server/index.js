@@ -74,6 +74,7 @@ app.get(`/community/likePost/checkLikes/:post_id`, communityCtrl.checkLikes)
 
 app.post(`/community/addfriend/`, communityCtrl.addFriend);
 app.post(`/community/likePost/:post_id`, communityCtrl.likePost)
+app.delete(`/community/unlikePost/:post_id`, communityCtrl.unlikePost)
 
 
 //PUBLIC ENDPOINTS
