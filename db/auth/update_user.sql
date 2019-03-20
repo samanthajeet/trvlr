@@ -1,6 +1,8 @@
 update users
 set user_image = ${user_image},
-    username = ${username}
+    username = ${username},
+    city = ${city},
+    country = ${country}
 where user_id = ${user_id};
 
 select *

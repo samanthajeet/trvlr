@@ -20,6 +20,10 @@ function Nav(props){
             </div>
             <div className="greeting-links">
               <h1>Aloha, <span style={{"color": "#FFAA00"}} >{props.username}!</span></h1>
+              <div className="location">
+              <i class="fas fa-globe-americas"></i>
+              <p>{props.city}, {props.country}</p>
+              </div>
               <div id="links">
                 <div className="nav-links">
                   <Link to='/dashboard'>home</Link>

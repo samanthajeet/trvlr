@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios'
 import {connect} from 'react-redux';
-import { updateUser, updateUserInfo } from '../../ducks/reducer'
+import { updateUser, updateUserInfo,updateUserLocation } from '../../ducks/reducer'
 import './UserInfo.css'
 
 class UserInfo extends Component {
@@ -10,7 +10,9 @@ class UserInfo extends Component {
     this.state = {
       user_image: this.props.user_image,
       username: this.props.username,
-      email: this.props.email
+      email: this.props.email,
+      city: this.props.city,
+      country: this.props.country
     }
   }
 
@@ -27,7 +29,9 @@ class UserInfo extends Component {
           user_id: response.data.user_id,
           user_image: response.data.user_image,
           username: response.data.username,
-          email: response.data.email
+          email: response.data.email,
+          city: response.data.city,
+          country: response.data.country
         })
         this.props.updateUser(response.data)
       } catch(err){
@@ -44,16 +48,17 @@ class UserInfo extends Component {
   }
 
   updateUserInfo = () => {
-    const { user_image, username } = this.state
-    axios.put('/auth/userInfo', {user_image, username}).then( response => {
+    const { user_image, username, city, country } = this.state
+    axios.put('/auth/userInfo', {user_image, username, city, country }).then( response => {
       console.log(response)
       this.props.history.push('/dashboard')
       this.props.updateUserInfo(user_image)
+      this.props.updateUserLocation(city, country)
     })
   }
 
   render() { 
-    
+    console.log(this.props)
     return ( 
       <div className="updateuserinfo">
         <div className="updatephoto">
@@ -63,6 +68,22 @@ class UserInfo extends Component {
         <p>your profile photo</p>
         </div>
         <div className="updatetext">
+          <p>update city</p>
+          <div className="updateCity">
+            <input
+              type="text"
+              value={this.state.city}
+              onChange={(e) => this.handleChange('city', e.target.value)}
+            />
+          </div>
+          <p>update country</p>
+          <div className="updateCity">
+            <input
+              type="text"
+              value={this.state.country}
+              onChange={(e) => this.handleChange('country', e.target.value)}
+            />
+          </div>
           <p>update profile photo</p>
           <input
             type="text"
@@ -97,7 +118,8 @@ const mapStateToProps = (reduxState) => {
 
 const mapDispatchToProps = {
   updateUser,
-  updateUserInfo
+  updateUserInfo,
+  updateUserLocation
 }
  
 export default connect(mapStateToProps, mapDispatchToProps)(UserInfo);
