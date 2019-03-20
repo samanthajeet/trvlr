@@ -86,6 +86,9 @@ app.get(`/publicProfile/posts/:user_id`, publicCtrl.getPublicPosts)
 const awsCtrl = require('./controllers/awsController')
 app.get('/api/signs3', awsCtrl.uploadPhoto);
 
+//LOCATION ENDPONTS
+const locCtrl = require('./controllers/locationController')
+app.get(`/location/userlocation`, locCtrl.getUserLocation)
 
 //TEST ENDPOINTS
 const testCtrl = require('./controllers/testController')

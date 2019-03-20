@@ -15,7 +15,7 @@ class Login extends Component {
       email: '',
       password: '',
       username: '',
-      id: 0
+      id: 0,
     }
   }
 

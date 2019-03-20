@@ -15,10 +15,7 @@ class UserInfo extends Component {
   }
 
   componentDidMount(){
-    console.log(1111,this.props)
     this.getUser()
-    console.log(2222,this.props)
-    console.log(333,this.state)
   }
 
   getUser = async () => {

@@ -2,11 +2,14 @@ const initialState = {
   email: '',
   username: '',
   user_image: '',
-  user_id: 0
+  user_id: 0,
+  city: '',
+  country: ''
 }
 
 const  UPDATE_USER = 'UPDATE_USER'
 const UPDATE_USER_INFO = 'UPDATE_USER_INFO'
+const UPDATE_USER_LOCATION = 'UPDATE_USER_LOCATION'
 const CLEAR_USER = 'CLEAR_USER'
 
 export function updateUser(user) {
@@ -21,6 +24,13 @@ export function updateUserInfo(user_image, username){
     type: UPDATE_USER_INFO,
     payload: user_image, username
   }
+}
+
+export function updateUserLocation(city,  country){
+  return {
+    type: UPDATE_USER_LOCATION,
+    payload: city,country
+    }
 }
 
 export function clearUser(){
@@ -39,6 +49,9 @@ export default function reducer(state=initialState, action) {
       return {...state, user_id, username, email, user_image }
     case UPDATE_USER_INFO:
       return {...state, user_image, username}
+    case UPDATE_USER_LOCATION:
+      const {city, country} = payload
+      return {... state, city, country }
     case CLEAR_USER:
       return {...state, id: 0, username: '', email: '', user_image: ''}
     default:

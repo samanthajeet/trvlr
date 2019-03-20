@@ -19,6 +19,7 @@ class Dashboard extends Component {
   componentDidMount(){
     this.getUser();
     this.getFriendsPosts();
+    this.getUserLocation();
 
   }
 
@@ -33,6 +34,12 @@ class Dashboard extends Component {
         console.log(err)
       }
     }
+  }
+
+  getUserLocation(){
+    axios.get(`/location/userlocation`).then( response => {
+      console.log(response.data)
+    })
   }
 
   getFriendsPosts = async() => {
