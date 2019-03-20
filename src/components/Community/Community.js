@@ -103,8 +103,7 @@ class Community extends Component {
 
 
   render() { 
-    console.log(this.props)
-    let mappedUsers = this.state.users.filter( user => user.username.toLowerCase().includes(this.state.user_search) ).map( user => {
+    let mappedUsers = this.state.users.filter( user => user.username.toLowerCase().includes(this.state.user_search) || user.email.toLowerCase().includes(this.state.user_search) ).map( user => {
       return (
         <div key={user.user_id}>
           <CommunityUsers
@@ -171,7 +170,7 @@ class Community extends Component {
           <div className="searchUsers">
             <input
               type="text"
-              placeholder="search by username"
+              placeholder="search by username or email"
               onChange={(e) => this.handleChange('user_search', e.target.value)}
             />
             <button>Search users</button>
