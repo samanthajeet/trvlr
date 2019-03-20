@@ -86,7 +86,7 @@ app.get('/api/signs3', awsCtrl.uploadPhoto);
 
 //WEATHER ENDPOINTS
 const weatherCtrl = require('./controllers/weatherController')
-app.get('/api/weather/', weatherCtrl.getWeather)
+app.get('/api/weather/:city', weatherCtrl.getWeather)
 
 //LOCATION ENDPONTS
 const locCtrl = require('./controllers/locationController')

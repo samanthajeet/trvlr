@@ -4,7 +4,8 @@ const initialState = {
   user_image: '',
   user_id: 0,
   city: '',
-  country: ''
+  country: '',
+  weather: ''
 }
 
 const  UPDATE_USER = 'UPDATE_USER'

@@ -5,6 +5,7 @@ import axios from 'axios';
 import CommunityPost from '../Community Posts/Community_Post';
 import ReactLoading from 'react-loading';
 import './Dashboard.css';
+import { TemporaryCredentials } from 'aws-sdk';
 
 
 class Dashboard extends Component {
@@ -12,15 +13,14 @@ class Dashboard extends Component {
     super(props);
     this.state = {
       friendsPosts: [],
-      loading: true
+      loading: true,
+      weather: ''
     }
   }
 
   componentDidMount(){
     this.getUser();
     this.getFriendsPosts();
-    this.getUserLocation();
-
   }
 
   getUser = async () => {
@@ -34,12 +34,28 @@ class Dashboard extends Component {
         console.log(err)
       }
     }
+    this.getLocationWeather();
   }
 
+ getLocationWeather = async() => {
+   await this.getUserLocation();
+   this.getWeather();
+ }
 
   getUserLocation(){
     axios.get(`/location/userlocation`).then( response => {
       this.props.updateUserLocation(response.data)
+    })
+  }
+
+  getWeather(){
+    const {city} = this.props
+    console.log({city})
+    axios.get(`/api/weather/${city}`).then(response => {
+      console.log(response.data.main)
+      this.setState({
+        weather: response.data.main.temp 
+      })
     })
   }
 
@@ -78,6 +94,7 @@ class Dashboard extends Component {
 
       
       <div className="dashboard">
+      <p>The current temperature in {this.props.city} is {this.state.weather}°f</p>
         
         <div className="dashboardPosts">
           {this.state.loading ? (
