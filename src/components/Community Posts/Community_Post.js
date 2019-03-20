@@ -66,7 +66,10 @@ class Community_post extends Component {
       <div>
 
         {this.state.liked ? (
+          <div>
+          <p>{like_count}</p>
           <button onClick={ () => this.unlikePost(post_id)}> <i class="fas fa-thumbs-up"></i></button>
+          </div>
         ): (
           <div>
             <p>{like_count}</p>
