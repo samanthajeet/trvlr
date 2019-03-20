@@ -52,7 +52,6 @@ class Dashboard extends Component {
     const {city} = this.props
     console.log({city})
     axios.get(`/api/weather/${city}`).then(response => {
-      console.log(response.data.main)
       this.setState({
         weather: response.data.main.temp 
       })
@@ -72,7 +71,7 @@ class Dashboard extends Component {
   }
 
   render() { 
-    console.log(this.props)
+    // console.log(this.props)
     let mappedPosts = this.state.friendsPosts.map( post => {
       return (
         <div key={post.post_id}>
