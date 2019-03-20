@@ -61,7 +61,6 @@ class Community extends Component {
         users: users.data
       })
 
-
     }catch(err){
       console.log(err)
     }
@@ -103,6 +102,7 @@ class Community extends Component {
 
 
   render() { 
+    // console.log(this.state.users)
     let mappedUsers = this.state.users.filter( e => e.username.toLowerCase().includes(this.state.user_search) ).map( user => {
       return (
         <div key={user.user_id}>
@@ -110,6 +110,7 @@ class Community extends Component {
             username={user.username}
             user_image={user.user_image}
             user_id={user.user_id}
+            user_city={user.city}
             addFriend={this.addFriend}
           />
 

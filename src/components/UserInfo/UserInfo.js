@@ -52,8 +52,6 @@ class UserInfo extends Component {
     axios.put('/auth/userInfo', {user_image, username, city, country }).then( response => {
       console.log(response)
       this.props.history.push('/dashboard')
-      this.props.updateUserInfo(user_image)
-      this.props.updateUserLocation(city, country)
     })
   }
 

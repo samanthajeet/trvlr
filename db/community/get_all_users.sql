@@ -1,2 +1,2 @@
-select username, user_image, user_id
+select username, user_image, user_id, city, country
 from users;
