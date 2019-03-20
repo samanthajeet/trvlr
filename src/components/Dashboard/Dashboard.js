@@ -36,6 +36,7 @@ class Dashboard extends Component {
     }
   }
 
+
   getUserLocation(){
     axios.get(`/location/userlocation`).then( response => {
       this.props.updateUserLocation(response.data)

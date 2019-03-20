@@ -11,9 +11,6 @@ const app = express();
 const { SERVER_PORT,
         CONNECTION_STRING,
         SESSION_SECRET,
-        S3_BUCKET,
-        AWS_ACCESS_KEY_ID,
-        AWS_SECRET_ACCESS_KEY
       } = process.env
 
 
@@ -86,6 +83,10 @@ app.get(`/publicProfile/posts/:user_id`, publicCtrl.getPublicPosts)
 //AWS EDNPOINT
 const awsCtrl = require('./controllers/awsController')
 app.get('/api/signs3', awsCtrl.uploadPhoto);
+
+//WEATHER ENDPOINTS
+const weatherCtrl = require('./controllers/weatherController')
+app.get('/api/weather/', weatherCtrl.getWeather)
 
 //LOCATION ENDPONTS
 const locCtrl = require('./controllers/locationController')
