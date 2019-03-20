@@ -17,6 +17,7 @@ class Community extends Component {
       users: [],
       user_search: '',
       search: '',
+      location_search: '',
       communityView: 'posts',
     }
   }
@@ -119,7 +120,7 @@ class Community extends Component {
       )
     })
 
-    let mappedPosts = this.state.communityPosts.map( post => {
+    let mappedPosts = this.state.communityPosts.filter( post => post.post_city.toLowerCase().includes(this.state.location_search) || post.post_country.toLowerCase().includes(this.state.location_search)).map( post => {
       return (
         <div key={post.post_id}>
           <CommunityPost
@@ -149,6 +150,11 @@ class Community extends Component {
         {this.state.communityView === 'posts' ? (
           <div>
             <h2>posts from the <span style={{"color":"#FFAA00"}} >trvlr</span> community</h2>
+            <input
+              type="text"
+              placeholder="search posts by location"
+              onChange={(e) => this.handleChange('location_search', e.target.value)}
+            />
             <div className='search-posts'>
               <input
                 type="text"
