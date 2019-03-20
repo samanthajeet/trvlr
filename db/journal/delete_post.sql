@@ -1,3 +1,8 @@
+
+delete
+from user_likes
+where post_id = ${post_id};
+
 delete
 from posts
 where post_id = ${post_id};

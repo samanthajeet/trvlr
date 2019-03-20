@@ -57,12 +57,16 @@ class Community_post extends Component {
         <button onClick={ () => this.props.history.push(`/journal/${post_id}`)}>view</button>
       </div>
       <div>
+
+        
+
+
         {this.state.liked ? (
-          <p>you already liked this {this.state.button}</p>
+          <i class="fas fa-thumbs-up"></i>
         ): (
           <div>
             <p>{like_count}</p>
-            <button onClick={ () => this.likePost(post_id)}> Like </button>
+            <button onClick={ () => this.likePost(post_id)}> <i class="far fa-thumbs-up"></i></button>
           </div>
         )}
       </div>

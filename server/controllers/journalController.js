@@ -40,16 +40,17 @@
      }
    },
 
-   deletePost: (req, res) => {
-    const db = req.app.get('db')
-    const { post_id } = req.params;
-    const {user_id} = req.session.user;
-    console.log({post_id})
-    db.journal.delete_post({post_id, user_id}).then( posts => {
-      res.status(200).send(posts)
-    }).catch( err => {
-      res.status(500).send(err)
-    })
+   deletePost: async (req, res) => {
+     try {
+       const db = req.app.get('db');
+       const {post_id} = req.params;
+       const {user_id} = req.session.user
+       let response = await db.journal.delete_post({post_id, user_id})
+       res.status(200).send(response)
+     } catch(err){
+        console.log(err)
+        res.status(500).send(err)
+     }
   },
   editPost: (req, res) => {
     try{
