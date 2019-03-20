@@ -50,8 +50,8 @@ export default function reducer(state=initialState, action) {
     case UPDATE_USER_INFO:
       return {...state, user_image, username}
     case UPDATE_USER_LOCATION:
-      const {city, country} = payload
-      return {... state, city, country }
+      const {city, country} = payload[0]
+      return {...state, city, country}
     case CLEAR_USER:
       return {...state, id: 0, username: '', email: '', user_image: ''}
     default:

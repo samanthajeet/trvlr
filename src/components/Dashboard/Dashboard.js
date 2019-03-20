@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {updateUser} from '../../ducks/reducer';
+import {updateUser, updateUserLocation } from '../../ducks/reducer';
 import axios from 'axios';
 import CommunityPost from '../Community Posts/Community_Post';
 import ReactLoading from 'react-loading';
@@ -38,7 +38,7 @@ class Dashboard extends Component {
 
   getUserLocation(){
     axios.get(`/location/userlocation`).then( response => {
-      console.log(response.data)
+      this.props.updateUserLocation(response.data)
     })
   }
 
@@ -55,6 +55,7 @@ class Dashboard extends Component {
   }
 
   render() { 
+    console.log(this.props)
     let mappedPosts = this.state.friendsPosts.map( post => {
       return (
         <div key={post.post_id}>
@@ -101,7 +102,8 @@ const mapStateToProps = (reduxState) => {
 }
 
 const mapDispatchToProps = {
-  updateUser
+  updateUser,
+  updateUserLocation
 }
  
 export default connect(mapStateToProps, mapDispatchToProps )(Dashboard);
