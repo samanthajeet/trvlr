@@ -29,13 +29,13 @@ Editor.formats = [
   'link', 'image', 'code-block', 'formula', 'video'
 ]
 
-class Quill extends React.Component {
+class EditQuill extends React.Component {
   constructor (props) {
     super(props)
 
     this.state = { 
       editorHtml: '', 
-      test_text:'',
+      test_text: this.props.existing_text,
       mountedEditor: false 
     }
 
@@ -47,7 +47,7 @@ class Quill extends React.Component {
   }
   
   componentDidMount () {
-    this.attachQuillRefs()
+    this.attachQuillRefs();
   }
   
   componentDidUpdate () {
@@ -68,7 +68,7 @@ class Quill extends React.Component {
   
   handleChange (html) {
     this.setState({ test_text: html });
-    this.props.setText(this.state.test_text)
+    // this.props.setText(this.state.test_text)
     
   }
   
@@ -81,7 +81,8 @@ class Quill extends React.Component {
   }
   
   render () {
-
+    console.log(this.props.existing_text)
+    console.log(this.state)
     return (
       <div>
         <ReactQuill 
@@ -90,7 +91,7 @@ class Quill extends React.Component {
           onChange={this.handleChange}
           modules={Editor.modules}
           formats={Editor.formats}
-          defaultValue={this.state.test_text}
+          defaultValue={this.props.existing_text}
           value={this.state.test_text}
           placeholder="your next great post starts here" 
           style={{
@@ -103,4 +104,4 @@ class Quill extends React.Component {
   }
 }
 
-export default Quill;
+export default EditQuill;
