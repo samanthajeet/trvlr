@@ -68,6 +68,7 @@ app.get(`/community/getAllUsers`, communityCtrl.getAllUsers );
 app.get(`/community/friendList/`, communityCtrl.getFriendList);
 app.get(`/community/friendPosts`, communityCtrl.friendPosts);
 app.get(`/community/likePost/checkLikes/:post_id`, communityCtrl.checkLikes)
+app.get(`/community/checkfriend/checkfriend/:friend_id`, communityCtrl.checkFriend)
 
 app.post(`/community/addfriend/`, communityCtrl.addFriend);
 app.post(`/community/likePost/:post_id`, communityCtrl.likePost)

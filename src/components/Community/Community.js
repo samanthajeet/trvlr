@@ -86,14 +86,7 @@ class Community extends Component {
     }
   };
 
-  addFriend = async friend_id => {
-    try {
-      let addFriend = await axios.post(`/community/addfriend/`, { friend_id });
-      console.log(addFriend);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+
 
   changeCommunityView(val) {
     this.setState({
@@ -117,7 +110,6 @@ class Community extends Component {
               user_id={user.user_id}
               user_city={user.city}
               user_user_id={this.props.user_id}
-              addFriend={this.addFriend}
             />
           </div>
         );
