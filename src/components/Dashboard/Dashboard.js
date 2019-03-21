@@ -14,13 +14,16 @@ class Dashboard extends Component {
     this.state = {
       friendsPosts: [],
       loading: true,
-      weather: ''
+      weather: '',
+      greetings: ['Aloha', 'Hello', 'Bonjour', 'Hola', 'Cio','Shalom','Konnichiwa', 'Guten Tag','Asalaam alaikum','Nǐ hǎo'],
+      randomGreeting: ''
     }
   }
 
   componentDidMount(){
     this.getUser();
     this.getFriendsPosts();
+    this.randomGreeting()
   }
 
   getUser = async () => {
@@ -70,6 +73,15 @@ class Dashboard extends Component {
     }
   }
 
+  randomGreeting() {
+    let randomGreeting = this.state.greetings[
+      Math.floor(Math.random() * this.state.greetings.length)
+    ];
+    this.setState({
+      randomGreeting: randomGreeting
+    });
+  }
+
   render() { 
     // console.log(this.props)
     let mappedPosts = this.state.friendsPosts.map( post => {
@@ -93,6 +105,9 @@ class Dashboard extends Component {
 
       
       <div className="dashboard">
+      <h1>
+        {this.state.randomGreeting}, <span style={{ color: "#FFAA00" }}>{this.props.username}!</span>
+      </h1>
       <p>The current temperature in {this.props.city} is {this.state.weather}°f</p>
         
         <div className="dashboardPosts">

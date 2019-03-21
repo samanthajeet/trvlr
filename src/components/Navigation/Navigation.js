@@ -14,12 +14,12 @@ function Nav(props) {
   ) {
     return (
       <div className="Nav">
+        <div className="greeting-links">
         <div className="profile-image">
           <img src={props.user_image} alt={props.username} />
         </div>
-        <div className="greeting-links">
           <h1>
-            Aloha, <span style={{ color: "#FFAA00" }}>{props.username}!</span>
+            <span style={{ color: "#FFAA00" }}>{props.username}</span>
           </h1>
           {props.city ? (
             <div className="location">
