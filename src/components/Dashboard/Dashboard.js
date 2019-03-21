@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {updateUser, updateUserLocation } from '../../ducks/reducer';
 import axios from 'axios';
-import CommunityPost from '../Community Posts/Community_Post';
+import DashboardPosts from '../DashboardPosts/DashboardPosts';
 import ReactLoading from 'react-loading';
 import './Dashboard.css';
-import { TemporaryCredentials } from 'aws-sdk';
+
 
 
 class Dashboard extends Component {
@@ -64,6 +64,7 @@ class Dashboard extends Component {
   getFriendsPosts = async() => {
     try {
       let response = await axios.get(`/community/friendPosts`)
+      // console.log(response.data)
       this.setState({
         friendsPosts: response.data,
         loading: false
@@ -87,13 +88,16 @@ class Dashboard extends Component {
     let mappedPosts = this.state.friendsPosts.map( post => {
       return (
         <div key={post.post_id}>
-          <CommunityPost
+          <DashboardPosts
             title={post.post_title}
             image1={post.post_image1}
             text={post.post_text}
             author={post.username}
             authorImg={post.user_image}
             post_id={post.post_id}
+            post_date={post.post_date}
+            post_country={post.post_country}
+            post_city={post.post_city}
             history={this.props.history} 
             />
         </div>

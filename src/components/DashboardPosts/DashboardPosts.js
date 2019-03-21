@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import axios from 'axios'
 import Avatar from '@material-ui/core/Avatar';
-import './Community_Posts.css'
+import './DashboardPosts.css'
 
-class Community_post extends Component {
+class DashboardPosts extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -52,7 +52,6 @@ class Community_post extends Component {
       <fig className="communitypostimage">
         <img src={image1} alt={title}/>
       </fig>
-
       <div className="post-text" >
         <h3>{title}</h3>
         <p>{post_date}</p>
@@ -86,4 +85,4 @@ class Community_post extends Component {
   }
 }
  
-export default Community_post;
+export default DashboardPosts;

@@ -28,7 +28,7 @@ class Journal extends Component {
 
   getUserPosts(){
     axios.get(`/journal/getUserPosts`).then( post => {
-      console.log(post.data)
+      // console.log(post.data)
       this.setState({
         userPosts: post.data,
         loading: false
