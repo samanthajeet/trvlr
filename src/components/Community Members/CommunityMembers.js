@@ -50,6 +50,7 @@ class CommunityMembers extends Component {
 
 
   render() {
+    console.log(this.props)
     const {user_image, username, user_id, addFriend, user_city, user_user_id} = this.props 
     return ( <div className="communityUsers">
     <div className="userImage">
@@ -59,8 +60,6 @@ class CommunityMembers extends Component {
       <i class="fas fa-globe-americas"></i><p>{user_city}</p>
       <p>number of posts</p>
       
-      
-
       {user_user_id === user_id   ? (
         null
       ): this.state.followed ? (  
@@ -68,6 +67,8 @@ class CommunityMembers extends Component {
         ) : (
           <button onClick={() => this.addFriend(user_id)} >follow</button>
       )}
+
+      <button onClick={() => this.props.view_profile(user_id)} >view journal</button>
 
     </div> );
   }

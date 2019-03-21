@@ -16,14 +16,17 @@ class Dashboard extends Component {
       loading: true,
       weather: '',
       greetings: ['Aloha', 'Hello', 'Bonjour', 'Hola', 'Cio','Shalom','Konnichiwa', 'Guten Tag','Asalaam alaikum','Nǐ hǎo'],
-      randomGreeting: ''
+      randomGreeting: '',
+      friends: [],
+      friendsPosts:[]
     }
   }
 
   componentDidMount(){
     this.getUser();
     this.getFriendsPosts();
-    this.randomGreeting()
+    this.randomGreeting();
+    this.getFriends();
   }
 
   getUser = async () => {
@@ -61,6 +64,17 @@ class Dashboard extends Component {
     })
   }
 
+  getFriends = async() => {
+    try {
+      let response = await axios.get(`/community/friendList/`)
+      this.setState({
+        friends: response.data
+      })
+    } catch(err){
+      console.log(err)
+    }
+  }
+
   getFriendsPosts = async() => {
     try {
       let response = await axios.get(`/community/friendPosts`)
@@ -91,7 +105,7 @@ class Dashboard extends Component {
           <DashboardPosts
             title={post.post_title}
             image1={post.post_image1}
-            text={post.post_text}
+            post_text={post.post_text}
             author={post.username}
             authorImg={post.user_image}
             post_id={post.post_id}
@@ -104,16 +118,26 @@ class Dashboard extends Component {
       )
     })
 
+    let mappedFriends = this.state.friends.map( friend => {
+      return (
+        <div key={friend.friend_id}>
+          <p>{friend.username}</p>
+          <img
+            src={friend.user_image}
+            alt={friend.username}
+            className="userImage" />
+        </div>
+      )
+    })
+
 
     return ( 
-
-      
       <div className="dashboard">
       <h1>
         {this.state.randomGreeting}, <span style={{ color: "#FFAA00" }}>{this.props.username}!</span>
       </h1>
       <p>The current temperature in {this.props.city} is {this.state.weather}°f</p>
-        
+
         <div className="dashboardPosts">
           {this.state.loading ? (
             <div>
@@ -121,9 +145,14 @@ class Dashboard extends Component {
               <ReactLoading type='spinningBubbles' color="#FFAA00" />
             </div>
           ): (
-            <div>
-              <h2>while you were gone</h2>
-              {mappedPosts}
+            <div className="dashboardcomponents">
+              <div>
+                {mappedFriends}
+              </div>
+              <div>
+
+                {mappedPosts}
+              </div>
             </div>
           ) }
           </div>

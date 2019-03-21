@@ -35,7 +35,7 @@ function Nav(props) {
               <Link to="/userinfo">account</Link>
               <Link to="/journal">journal</Link>
               <Link to="/community">trvlr community</Link>
-              <Link to="/userCommunity">your community</Link>
+              {/* <Link to="/userCommunity">your community</Link> */}
             </div>
           </div>
         </div>

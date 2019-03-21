@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import CommunityPost from '../Community Posts/Community_Post'
+import CommunityPost from '../Community Posts/Community_Post';
+import './UserCommunity.css'
 
 class UserCommunity extends Component {
   constructor(props){
@@ -44,7 +45,10 @@ class UserCommunity extends Component {
       return (
         <div key={friend.friend_id}>
           <p>{friend.username}</p>
-          <img src={friend.user_image} alt={friend.username} style={{"width": 150}} />
+          <img
+            src={friend.user_image}
+            alt={friend.username}
+            className="userImage" />
         </div>
       )
     })

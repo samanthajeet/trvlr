@@ -46,7 +46,7 @@ class DashboardPosts extends Component {
 
 
   render() { 
-    const {title, image1, authorImg, author, post_id, like_count, post_city, post_country, post_date} = this.props
+    const {title, image1, authorImg, author, post_id, like_count, post_city, post_country, post_date, post_text} = this.props
     return ( 
       <div className='communiytPost'>
       <fig className="communitypostimage">
@@ -77,6 +77,8 @@ class DashboardPosts extends Component {
             <button onClick={ () => this.likePost(post_id)}> <i class="far fa-thumbs-up"></i></button>
           </div>
         )}
+
+        {/* <p>{post_text}</p> */}
       </div>
 
     </div>

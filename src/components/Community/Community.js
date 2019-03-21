@@ -19,6 +19,7 @@ class Community extends Component {
       location_search: "",
       communityView: "posts"
     };
+    this.viewUserProfile = this.viewUserProfile.bind(this)
   }
 
   componentDidMount() {
@@ -30,7 +31,7 @@ class Community extends Component {
   getCommunityPosts = async () => {
     try {
       let posts = await axios.get("/journal/getAllCommunityPosts");
-      console.log(posts.data);
+      // console.log(posts.data);
       this.setState({
         communityPosts: posts.data
       });
@@ -86,6 +87,9 @@ class Community extends Component {
     }
   };
 
+  viewUserProfile(user_id){
+    this.props.history.push(`/publicProfile/${user_id}`)
+  }
 
 
   changeCommunityView(val) {
@@ -95,6 +99,7 @@ class Community extends Component {
   }
 
   render() {
+    console.log(this.props)
     let mappedUsers = this.state.users
       .filter(
         user =>
@@ -109,6 +114,7 @@ class Community extends Component {
               user_image={user.user_image}
               user_id={user.user_id}
               user_city={user.city}
+              view_profile={this.viewUserProfile}
               user_user_id={this.props.user_id}
             />
           </div>
