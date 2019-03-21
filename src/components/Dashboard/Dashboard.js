@@ -30,7 +30,7 @@ class Dashboard extends Component {
       friends: [],
       friend_search: ""
     };
-    this.setFriendSearch = this.setFriendSearch.bind(this)
+    this.setFriendSearch = this.setFriendSearch.bind(this);
   }
 
   componentDidMount() {
@@ -100,12 +100,10 @@ class Dashboard extends Component {
   };
 
   setFriendSearch(username) {
-    console.log(username)
     this.setState({
       friend_search: username
     });
   }
-
 
   randomGreeting() {
     let randomGreeting = this.state.greetings[
@@ -161,6 +159,9 @@ class Dashboard extends Component {
         <p>
           The current temperature in {this.props.city} is {this.state.weather}°f
         </p>
+        <button onClick={() => this.setState({ friend_search: "" })}>
+          unfilter posts
+        </button>
 
         <div className="dashboardPosts">
           {this.state.loading ? (
@@ -170,9 +171,12 @@ class Dashboard extends Component {
             </div>
           ) : (
             <div className="dashboardcomponents">
-            <button onClick={() => this.setState({friend_search: ''})} >reset filter</button>
-              <div>{mappedFriends}</div>
-              <div>{mappedPosts}</div>
+              <div className="dashbaordfriends">
+                {mappedFriends}
+              </div>
+              <div className="dashbaordposts">
+                {mappedPosts}
+              </div>
             </div>
           )}
         </div>

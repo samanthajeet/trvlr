@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
 import { clearUser } from "./../../ducks/reducer";
+import Avatar from "@material-ui/core/Avatar";
 import "./Navigation.css";
 
 function Nav(props) {
@@ -15,20 +16,28 @@ function Nav(props) {
     return (
       <div className="Nav">
         <div className="greeting-links">
-        <div className="profile-image">
-          <img src={props.user_image} alt={props.username} />
-        </div>
+          <div className="profile-image">
+            <Avatar
+              src={props.user_image}
+              alt={props.username}
+              style={{
+                width: "12rem",
+                height: "12rem",
+                marginBottom: "1rem"
+              }}
+            />
+          </div>
           <h1>
             <span style={{ color: "#FFAA00" }}>{props.username}</span>
           </h1>
-          {props.city ? (
-            <div className="location">
-              <i class="fas fa-globe-americas" />
-              <p>
-                {props.city}, {props.country}
-              </p>
-            </div>
-          ) : null}
+            {props.city ? (
+              <div className="nav-location">
+                <i class="fas fa-globe-americas" />
+                <p>
+                  {props.city}, {props.country}
+                </p>
+              </div>
+            ) : null}
           <div id="links">
             <div className="nav-links">
               <Link to="/dashboard">home</Link>

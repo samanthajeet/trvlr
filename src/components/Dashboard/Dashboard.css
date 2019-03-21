@@ -10,7 +10,8 @@
   display: flex;
   flex-direction: column;
   animation-name: fade-in;
-  animation-duration: 1s
+  animation-duration: 1s;
+  
 }
 
 @keyframes fade-in {
@@ -18,15 +19,7 @@
   100% { opacity: 1; }
 }
 
-.dashboardImage img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
 
-.dashboardImage {
-  width: 50%;
-}
 .dashboard h1 {
   font-size: 2rem;
   font-family: "Roboto", sans-serif;
@@ -51,14 +44,43 @@
   display: flex;
   justify-content:  center;
   margin: 0;
+
+}
+
+.dashboardcomponents{
+  /* border: 2px solid pink; */
+  width: 100%;
+  height: 44rem;
+  display: flex;
+  justify-content: space-around
+}
+
+.dashbaordfriends{
+  /* border: 1px solid green; */
+  width: 30%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  align-content: flex-start;
+}
+
+.dashbaordposts{
+  width: 70%;
+  height: 99%;
   overflow-y: scroll; 
   overflow-x:hidden
 }
 
-.dashboardcomponents{
-  border: 2px solid pink;
-  width: 100%;
-  display: flex;
-  justify-content: space-around
-
+.dashboard button {
+  font-size: 0.7rem;
+  font-family: 'Roboto', sans-serif;
+  text-transform: lowercase;
+  font-weight: 300 ;
+  color: white;
+  background: none;
+  border: 1px solid #FFAA00;
+  color: #FFAA00;
+  margin-top: 0.5rem;
+  height: 1.5rem;
+  width: 5rem;
 }

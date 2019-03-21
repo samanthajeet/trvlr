@@ -1,12 +1,12 @@
 .community{
   width: 75%;
-  height: 90vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
 }
 
 .community-posts {
-  height: 80vh;
+  height: 78vh;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -36,12 +36,14 @@
 }
 
 .communityusers {
-  height: 80vh;
+  height: 78vh;
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
-  align-content: center;
+  justify-content: flex-start;
   overflow-y: scroll; 
   overflow-x:hidden
+
 }
 
 .community button {

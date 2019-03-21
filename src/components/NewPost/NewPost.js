@@ -36,8 +36,9 @@ class NewPost extends Component {
     if (!user_id) {
       try {
         let response = await axios.get("/auth/isLoggedIn");
-        console.log(response);
+        this.props.updateUser(response.data);
       } catch (err) {
+        this.props.history.push("/");
         console.log(err);
       }
     }

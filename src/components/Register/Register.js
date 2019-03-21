@@ -35,7 +35,7 @@ class Register extends Component {
       try {
         let response = await axios.post('/auth/register', user);
         this.props.updateUser(response.data)
-        this.props.history.push('/dashboard')
+        this.props.history.push('/login')
       } catch(err) {
         console.log(err)
       }
