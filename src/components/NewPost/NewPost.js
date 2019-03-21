@@ -17,7 +17,7 @@ class NewPost extends Component {
       post_title: "",
       post_text: "",
       post_image: "",
-      now: new Date(),
+      // post_date: new Date(),
       isUploading: false,
       url: "http://via.placeholder.com/200x200",
       post_city: '',
@@ -46,7 +46,7 @@ class NewPost extends Component {
   createPost = async () => {
     console.log(this.state);
     const { user_id } = this.props;
-    const { post_title, post_text, post_image, post_city, post_country } = this.state;
+    const { post_title, post_text, post_image, post_city, post_country} = this.state;
     let post = { user_id, post_title, post_text, post_image, post_city, post_country };
     try {
       let response = await axios.post("/journal/createPost", post);
@@ -56,14 +56,16 @@ class NewPost extends Component {
     }
   };
 
-  formatTime() {
-    let date = new Intl.DateTimeFormat("en-US", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit"
-    }).format(this.state.now);
-    return date;
-  }
+  // formatTime() {
+  //   let date = new Intl.DateTimeFormat("en-US", {
+  //     year: "numeric",
+  //     month: "2-digit",
+  //     day: "2-digit",
+  //     hour: 'numeric',
+  //     minute: 'numeric',
+  //   }).format(this.state.post_date);
+  //   return date;
+  // }
 
   handleChange(prop, val) {
     this.setState({
@@ -132,11 +134,11 @@ class NewPost extends Component {
   render() {
 
     const { url, isUploading } = this.state;
-    let timestampFormat = new Intl.DateTimeFormat("en-US", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit"
-    }).format(this.state.now);
+    // let timestampFormat = new Intl.DateTimeFormat("en-US", {
+    //   year: "numeric",
+    //   month: "2-digit",
+    //   day: "2-digit"
+    // }).format(this.state.post_date);
 
     return (
       <div className="newpost">
@@ -200,9 +202,6 @@ class NewPost extends Component {
           <div>
             <p>post</p>
             <Quill setText={this.setText} />
-          </div>
-          <div>
-            <p>{timestampFormat}</p>
           </div>
         </div>
         <div className="newpostbtn">

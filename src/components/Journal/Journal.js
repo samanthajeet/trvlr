@@ -28,6 +28,7 @@ class Journal extends Component {
 
   getUserPosts(){
     axios.get(`/journal/getUserPosts`).then( post => {
+      console.log(post.data)
       this.setState({
         userPosts: post.data,
         loading: false
@@ -73,6 +74,7 @@ class Journal extends Component {
             text={post.post_text}
             delete={this.deletePost}
             post_id={post.post_id}
+            post_date={post.post_date}
             history={this.props.history}
           />
         </div>
@@ -81,6 +83,7 @@ class Journal extends Component {
     
 
     return ( 
+
 
       <div className='journalLanding'> 
         {this.state.loading ? (
