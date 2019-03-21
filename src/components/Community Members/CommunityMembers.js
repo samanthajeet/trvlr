@@ -32,6 +32,13 @@ class CommunityMembers extends Component {
     }
   }
 
+  unfollowFriend(){
+    axios.delete(`/community/unfollowfriend/${this.props.user_id}`)
+    this.setState({
+      followed: false
+    })
+  }
+
 
   render() {
     const {user_image, username, user_id, addFriend, user_city, user_user_id} = this.props 
@@ -48,7 +55,7 @@ class CommunityMembers extends Component {
       {user_user_id === user_id   ? (
         null
       ): this.state.followed ? (  
-          <p>following</p>
+          <button onClick={() => this.unfollowFriend()} >unfollow</button>
         ) : (
           <button onClick={() => addFriend(user_id)} >follow</button>
       )}
