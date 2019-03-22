@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { updateUser } from "../../ducks/reducer";
+import {withRouter} from 'react-router-dom';
 import CommunityPost from "../Community Posts/Community_Post";
 import CommunityUsers from "../Community Members/CommunityMembers";
 
@@ -18,7 +19,7 @@ class Community extends Component {
       search: "",
       communityView: "posts"
     };
-    this.viewUserProfile = this.viewUserProfile.bind(this)
+    this.viewUserProfile = this.viewUserProfile.bind(this);
   }
 
   componentDidMount() {
@@ -86,10 +87,13 @@ class Community extends Component {
   //   }
   // };
 
-  viewUserProfile(user_id){
-    this.props.history.push(`/publicProfile/${user_id}`)
+  viewUserProfile(user_id) {
+    this.props.history.push(`/publicProfile/${user_id}`);
   }
 
+  viewUserPost(post_id) {
+    this.props.history.push(`/journal/${post_id}`);
+  }
 
   changeCommunityView(val) {
     this.setState({
@@ -98,11 +102,16 @@ class Community extends Component {
   }
 
   render() {
+    console.log(111, this.props);
     let mappedUsers = this.state.users
       .filter(
         user =>
-          user.username.toLowerCase().includes(this.state.user_search.toLowerCase()) ||
-          user.email.toLowerCase().includes(this.state.user_search.toLowerCase())
+          user.username
+            .toLowerCase()
+            .includes(this.state.user_search.toLowerCase()) ||
+          user.email
+            .toLowerCase()
+            .includes(this.state.user_search.toLowerCase())
       )
       .map(user => {
         return (
@@ -142,6 +151,9 @@ class Community extends Component {
               post_date={post.post_date}
               user_id={post.user_id}
               view_profile={this.viewUserProfile}
+              view_post={this.viewUserPost}
+              history={this.props.history}
+
             />
           </div>
         );
@@ -166,9 +178,7 @@ class Community extends Component {
             <input
               type="text"
               placeholder="search posts"
-              onChange={e =>
-                this.handleChange("search", e.target.value)
-              }
+              onChange={e => this.handleChange("search", e.target.value)}
             />
             {/* <div className="search-posts">
               <input
@@ -207,7 +217,7 @@ const mapDispatchToProps = {
   updateUser
 };
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(Community);
+)(Community));

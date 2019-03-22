@@ -78,7 +78,7 @@ class Community_post extends Component {
         <h3>{title}</h3>
         <div className="communiyt-post-bottom">
           <button
-            onClick={() => this.props.history.push(`/journal/${post_id}`)}
+            onClick={() => this.props.history.push(`/journal/${post_id}`) }
           >
             view
           </button>
