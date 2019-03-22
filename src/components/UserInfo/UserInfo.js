@@ -26,6 +26,7 @@ class UserInfo extends Component {
     if(!user_id) {
       try {
         let response = await axios.get('/auth/isLoggedIn')
+        console.log(response.data)
         this.setState({
           user_id: response.data.user_id,
           user_image: response.data.user_image,
@@ -49,11 +50,11 @@ class UserInfo extends Component {
   }
 
 
-
   updateUserInfo = () => {
     const { user_image, username, city, country } = this.state
     axios.put('/auth/userInfo', {user_image, username, city, country }).then( response => {
       console.log(response)
+      this.props.updateUser({user_image, username, city, country})
       this.props.history.push('/dashboard')
     })
   }

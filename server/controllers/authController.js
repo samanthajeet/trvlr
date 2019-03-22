@@ -38,10 +38,14 @@ module.exports = {
     }
   },
   
-  isLoggedIn: (req, res) => {
+  isLoggedIn: async (req, res) => {
     const { user } = req.session;
+    const {email} = req.session.user
+    const db = req.app.get('db')
     if(user) {
-      res.status(200).send(user)
+      let userinfo = await db.auth.login({email})
+      delete userinfo[0].password
+      res.status(200).send(userinfo[0])
     } else {
       res.sendStatus(401)
     }
@@ -59,6 +63,6 @@ module.exports = {
     const db = req.app.get('db')
     let updateUser = await db.auth.update_user({user_image, user_id, username, city, country})
     res.status(200).send(updateUser)
-  
+
   }
 }
