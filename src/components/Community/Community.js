@@ -162,10 +162,10 @@ class Community extends Component {
     return (
       <div className="community">
         <div>
-          <button onClick={() => this.changeCommunityView("posts")}>
+          <button onClick={() => this.changeCommunityView("posts")} className="comm-btn">
             posts
           </button>
-          <button onClick={() => this.changeCommunityView("people")}>
+          <button onClick={() => this.changeCommunityView("people")} className="comm-btn">
             people
           </button>
         </div>

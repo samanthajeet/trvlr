@@ -26,17 +26,14 @@
   margin-bottom: 1rem;
 }
 
-.community button {
-  width: 10%;
-  height: 10%;
-}
 
 .community input {
   width: 20%;
 }
 
 .communityusers {
-  height: 78vh;
+  /* border: 2px solid green; */
+  height: 82vh;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -46,7 +43,8 @@
 
 }
 
-.community button {
+
+.comm-btn {
   font-size: 0.7rem;
   font-family: 'Roboto', sans-serif;
   text-transform: lowercase;
@@ -55,9 +53,19 @@
   background: none;
   border: 1px solid #FFAA00;
   color: #FFAA00;
-  height: 1.5rem;
+  height: 2rem;
   width: 5rem;
   margin-left: 0.5rem;
+}
+
+.avatarbtn {
+  border: none;
+}
+
+.likebtn {
+  border: none;
+  display: flex;
+  color: #FFAA00;
 }
 
 .community h2 {

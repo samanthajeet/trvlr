@@ -94,8 +94,9 @@
   align-items: center;
 }
 
-/* .comm-like button {
-  font-size: 1rem;
+
+.viewbtn {
+  font-size: 0.7rem;
   font-family: 'Roboto', sans-serif;
   text-transform: lowercase;
   font-weight: 300 ;
@@ -103,7 +104,20 @@
   background: none;
   border: 1px solid #FFAA00;
   color: #FFAA00;
-  margin-top: 0.5rem;
-  height: 1.5rem;
+  height: 2rem;
   width: 5rem;
-} */
+  margin-left: 0.5rem;
+}
+
+.comm-like button {
+  font-size: 1rem;
+  text-transform: lowercase;
+  font-weight: 300 ;
+  color: white;
+  background: none;
+  border: none;
+  color: #FFAA00;
+  margin-top: 0.5rem;
+  height: 2rem;
+  width: 5rem;
+}

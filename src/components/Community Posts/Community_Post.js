@@ -63,7 +63,7 @@ class Community_post extends Component {
       <div className="communiytPost">
         <div className="author-view">
           <div className="authorDetail">
-          <button onClick={() => this.props.view_profile(user_id) } >
+          <button onClick={() => this.props.view_profile(user_id) } className="avatarbtn" >
             <Avatar src={authorImg} alt={author} />
             <p>{author}</p>
           </button>
@@ -79,6 +79,7 @@ class Community_post extends Component {
         <div className="communiyt-post-bottom">
           <button
             onClick={() => this.props.history.push(`/journal/${post_id}`) }
+            className="viewbtn"
           >
             view
           </button>
@@ -92,8 +93,8 @@ class Community_post extends Component {
               </div>
             ) : (
               <div>
-                <button onClick={() => this.likePost(post_id)}>
-                  <p>{like_count}</p>
+                <button onClick={() => this.likePost(post_id)} className="likebtn">
+                  <p>{like_count} </p>
                   <i class="far fa-thumbs-up" />
                 </button>
               </div>
