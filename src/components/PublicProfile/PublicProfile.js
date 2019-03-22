@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import {withRouter} from 'react-router-dom';
+import { connect } from "react-redux";
+import { updateUser } from "../../ducks/reducer";
 import Avatar from '@material-ui/core/Avatar';
 import CommunityPost from "../Community Posts/Community_Post";
 import './PublicProfile.css'
@@ -101,6 +104,7 @@ class PublicProfile extends Component {
             post_country={post.post_country}
             post_date={post.post_date}
             user_id={post.user_id}
+            history={this.props.history}
           />
         </div>
       );
@@ -123,5 +127,15 @@ class PublicProfile extends Component {
      );
   }
 }
- 
-export default PublicProfile;
+const mapStateToProps = reduxState => {
+  return reduxState;
+};
+
+const mapDispatchToProps = {
+  updateUser
+}
+
+export default withRouter(connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PublicProfile));

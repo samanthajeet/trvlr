@@ -144,6 +144,7 @@ class NewPost extends Component {
     return (
       <div className="newpost">
         <div className="upperEdit">
+        <div className='text-edit'>
           <p>post title</p>
           <input
             type="text"
@@ -162,54 +163,56 @@ class NewPost extends Component {
             placeholder="country"
             onChange={e => this.handleChange("post_country", e.target.value)}
           />
-          <p>image</p>
-          <input
-            type="text"
-            placeholder="image_urls"
-            onChange={e => this.handleChange("post_image", e.target.value)}
-          />
-          <Dropzone
-            onDropAccepted={this.getSignedRequest}
-            style={{
-              position: "relative",
-              width: 200,
-              height: 100,
-              borderWidth: 7,
-              marginTop: 100,
-              borderColor: "blue",
-              borderStyle: "solid",
-              borderRadius: 5,
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              fontSize: 28
-            }}
-            accept="image/*"
-            multiple={false}
-          >
-            {isUploading ? <GridLoader /> : <p>Drop File or Click Here</p>}
-          </Dropzone>
-          <img
-            src={this.state.post_image}
-            alt={this.state.post_title}
-            style={{
-              "width": "200px",
-              "height": "200px"
-      
-            }}
-          />
         </div>
-        <div className="Quill">
-          <div>
-            <p>post</p>
-            <Quill setText={this.setText} />
+          <div className="imageuploadarea">
+          <div className="imageinputarea">
+            <p>upload image above and insert image url below</p>
+            <Dropzone
+              onDropAccepted={this.getSignedRequest}
+              style={{
+                position: "relative",
+                width: "20rem",
+                height: "5rem",
+                borderWidth: 1,
+                borderColor: "#FFAA00",
+                borderStyle: "dashed",
+                borderRadius: 5,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                fontSize: 28
+              }}
+              accept="image/*"
+              multiple={false}
+            >
+              {isUploading ? <GridLoader /> : <p>Drop File or Click Here</p>}
+            </Dropzone>
+            <input
+              type="text"
+              placeholder="image_url"
+              onChange={e => this.handleChange("post_image", e.target.value)}
+            />
+          </div>
+          <div className="imagepreview">
+            <img
+              src={this.state.post_image}
+              alt={this.state.post_title}
+            />
+          </div>
           </div>
         </div>
-        <div className="newpostbtn">
-          <button onClick={this.createPost}>Create New entry</button>
-          <button onClick={() => this.props.history.push("/journal")}>
-            Cancel
-          </button>
+        <div className="bottomEdit">
+          <div className="Quill">
+            <div>
+              <Quill setText={this.setText} />
+            </div>
+          </div>
+          <div className="newpostbtn">
+            <button onClick={this.createPost}>Create New entry</button>
+            <button onClick={() => this.props.history.push("/journal")}>
+              Cancel
+            </button>
+          </div>
         </div>
       </div>
     );
