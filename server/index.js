@@ -19,7 +19,7 @@ var pgPool = new pg.Pool({
 })
 
 
-
+app.use( express.static( `${__dirname}/../build` ) );
 app.use(express.json())
 app.use(session({
   store: new pgSession({
