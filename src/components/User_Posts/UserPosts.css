@@ -7,10 +7,10 @@
 }
 
 .userPost {
-  width: 30rem;;
+  width: 75%;;
   height: 15rem;
   border: 1px solid #FFAA00;
-  margin: 0.5rem;
+  margin-bottom: 0.5rem;
   padding: 0.5rem;
   display: flex;
   animation-name: fade-in;
@@ -25,8 +25,9 @@
 
 
 .userPost h1 {
+  height: 40%;
   margin-top: 0.5rem;
-  font-size: 1.5rem;
+  font-size: 2rem;
   text-transform: none;
   font-family: 'Playfair Display', serif;
   font-weight: 700;
@@ -55,13 +56,28 @@
 }
 
 .userposttext{
-  /* border: 2px solid green; */
+  height: 100%;
   width: 50%;
   margin-left: 1rem;
 
 }
 
-.userposttext button {
+.like-date{
+  display: flex;
+  justify-content: space-between;
+}
+
+.userpost-btn {
+
+  height: 50%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  
+}
+
+.userpost-btn button {
+  margin: 0.25rem;
   font-size: 0.7rem;
   font-family: 'Roboto', sans-serif;
   text-transform: lowercase;
@@ -72,7 +88,6 @@
   color: #FFAA00;
   height: 1.5rem;
   width: 5rem;
-  margin-right: 0.5rem;
 }
 
 .posttext {

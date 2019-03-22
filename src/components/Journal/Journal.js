@@ -75,6 +75,7 @@ class Journal extends Component {
             delete={this.deletePost}
             post_id={post.post_id}
             post_date={post.post_date}
+            like_count={post.post_like}
             history={this.props.history}
           />
         </div>
@@ -96,8 +97,8 @@ class Journal extends Component {
             <div className="alluserposts">
             <div className="journal-sidebar">
               <h2>You have <span style={{"color":"#FFAA00"}} >{mappedPosts.length}</span> entries</h2>
-              <button onClick={() => this.props.history.push('/newPost') } >New Entry</button>
-              <p>public profile: /publicProfile/{this.props.user_id}</p>
+              <button onClick={() => this.props.history.push('/newPost') }  className="journal-btn">New Entry</button>
+              {/* <p>public profile: /publicProfile/{this.props.user_id}</p> */}
             </div>
               <div className="journaluserposts">
                 {mappedPosts} 
