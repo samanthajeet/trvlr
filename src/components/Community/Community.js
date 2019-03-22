@@ -16,7 +16,6 @@ class Community extends Component {
       users: [],
       user_search: "",
       search: "",
-      location_search: "",
       communityView: "posts"
     };
     this.viewUserProfile = this.viewUserProfile.bind(this)
@@ -73,19 +72,19 @@ class Community extends Component {
     });
   }
 
-  searchByTitle = async () => {
-    const { search } = this.state;
-    try {
-      let searchResults = await axios.get(
-        `/journal/searchTitle?search=${search}`
-      );
-      this.setState({
-        communityPosts: searchResults.data
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // searchByTitle = async () => {
+  //   const { search } = this.state;
+  //   try {
+  //     let searchResults = await axios.get(
+  //       `/journal/searchTitle?search=${search}`
+  //     );
+  //     this.setState({
+  //       communityPosts: searchResults.data
+  //     });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   viewUserProfile(user_id){
     this.props.history.push(`/publicProfile/${user_id}`)
@@ -99,12 +98,11 @@ class Community extends Component {
   }
 
   render() {
-    console.log(this.props)
     let mappedUsers = this.state.users
       .filter(
         user =>
-          user.username.toLowerCase().includes(this.state.user_search) ||
-          user.email.toLowerCase().includes(this.state.user_search)
+          user.username.toLowerCase().includes(this.state.user_search.toLowerCase()) ||
+          user.email.toLowerCase().includes(this.state.user_search.toLowerCase())
       )
       .map(user => {
         return (
@@ -124,8 +122,9 @@ class Community extends Component {
     let mappedPosts = this.state.communityPosts
       .filter(
         post =>
-          post.post_city.toLowerCase().includes(this.state.location_search) ||
-          post.post_country.toLowerCase().includes(this.state.location_search)
+          post.post_city.toLowerCase().includes(this.state.search) ||
+          post.post_country.toLowerCase().includes(this.state.search) ||
+          post.username.toLowerCase().includes(this.state.search.toLocaleLowerCase())
       )
       .map(post => {
         return (
@@ -141,7 +140,8 @@ class Community extends Component {
               post_city={post.post_city}
               post_country={post.post_country}
               post_date={post.post_date}
-              history={this.props.history}
+              user_id={post.user_id}
+              view_profile={this.viewUserProfile}
             />
           </div>
         );
@@ -165,12 +165,12 @@ class Community extends Component {
             </h2>
             <input
               type="text"
-              placeholder="search posts by location"
+              placeholder="search posts"
               onChange={e =>
-                this.handleChange("location_search", e.target.value)
+                this.handleChange("search", e.target.value)
               }
             />
-            <div className="search-posts">
+            {/* <div className="search-posts">
               <input
                 type="text"
                 placeholder="search post titles"
@@ -178,7 +178,7 @@ class Community extends Component {
               />
               <button onClick={this.searchByTitle}>Search</button>
               <button onClick={this.getCommunityPosts}>Reset Search</button>
-            </div>
+            </div> */}
             <div className="community-posts">{mappedPosts}</div>
           </div>
         ) : (

@@ -8,12 +8,15 @@ class Post extends Component {
     super(props)
     this.state = {
       post: [],
-      userIdMatch: false
+      userIdMatch: false,
+      liked: false,
+      button: "like"
     }
   }
 
   componentWillMount(){
     this.getPost();
+    
     // this.checkUserIdMatch()
   }
 
@@ -24,8 +27,38 @@ class Post extends Component {
         post: response.data
       })
     })
+    this.checkLike();
   }
-  
+
+  checkLike = async () => {
+    try {
+      let response = await axios.get(
+        `/community/likePost/checkLikes/${this.props.match.params.post_id}`
+      );
+      if (response.data[0]) {
+        this.setState({
+          liked: true
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+
+  likePost(post_id) {
+    axios.post(`/community/likePost/${this.props.match.params.post_id}`);
+    this.setState({
+      liked: true
+    });
+  }
+
+  unlikePost(post_id) {
+    axios.delete(`/community/unlikePost/${this.props.match.params.post_id}`);
+    this.setState({
+      liked: false
+    });
+  }
   // checkUserIdMatch = () => {
   //   if(this.post.user_id === this.props.user_id){
   //     this.setState({
@@ -35,13 +68,28 @@ class Post extends Component {
   // }
   
   render() { 
-    const { post_title, post_text, post_image1, username} = this.state.post
-    console.log(post_text)
+    const { post_title, post_text, post_image1, username, post_id} = this.state.post
     return ( 
       <div className="post-container">
         <div className="post">
           <h1>{post_title}</h1>
           <h4>by {username}</h4>
+          <button onClick={() => window.history.back()} >go back </button>
+          {this.state.liked ? (
+              <div className="comm-like">
+                {/* <p>{like_count}</p> */}
+                <button onClick={() => this.unlikePost(post_id)}>
+                  <i class="fas fa-thumbs-up" />
+                </button>
+              </div>
+            ) : (
+              <div>
+                <button onClick={() => this.likePost(post_id)}>
+                  {/* <p>{like_count}</p> */}
+                  <i class="far fa-thumbs-up" />
+                </button>
+              </div>
+            )}
           <div className="postimage">
             <img src={post_image1} alt={post_title} />
           </div>
@@ -50,12 +98,12 @@ class Post extends Component {
             
           </div>
           <div className="postbtns">
-            <button onClick={() => window.history.back()} >go back </button>
-            {this.state.userIdMatch? (
+
+            {/* {this.state.userIdMatch? (
               <button >edit</button>
               ) : (
                   null
-              )}
+              )} */}
           </div>
       </div>
      );

@@ -46,6 +46,7 @@ class Community_post extends Component {
   }
 
   render() {
+    // console.log(this.props)
     const {
       title,
       image1,
@@ -55,14 +56,17 @@ class Community_post extends Component {
       like_count,
       post_city,
       post_country,
-      post_date
+      post_date,
+      user_id
     } = this.props;
     return (
       <div className="communiytPost">
         <div className="author-view">
           <div className="authorDetail">
+          <button onClick={() => this.props.view_profile(user_id) } >
             <Avatar src={authorImg} alt={author} />
             <p>{author}</p>
+          </button>
           </div>
           <p>
             {post_city}, {post_country}

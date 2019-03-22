@@ -159,9 +159,6 @@ class Dashboard extends Component {
         <p>
           The current temperature in {this.props.city} is {this.state.weather}°f
         </p>
-        <button onClick={() => this.setState({ friend_search: "" })}>
-          unfilter posts
-        </button>
 
         <div className="dashboardPosts">
           {this.state.loading ? (
@@ -171,10 +168,20 @@ class Dashboard extends Component {
             </div>
           ) : (
             <div className="dashboardcomponents">
-              <div className="dashbaordfriends">
-                {mappedFriends}
-              </div>
+              <div className="dashbaordfriends">{mappedFriends}</div>
               <div className="dashbaordposts">
+                {this.state.friend_search ? (
+                  <div>
+                    <p>
+                      viewing journal entries from {this.state.friend_search}
+                    </p>
+                    <button
+                      onClick={() => this.setState({ friend_search: "" })}
+                    >
+                      unfilter posts
+                    </button>
+                  </div>
+                ) : null}
                 {mappedPosts}
               </div>
             </div>

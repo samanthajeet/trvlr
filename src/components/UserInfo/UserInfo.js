@@ -12,7 +12,8 @@ class UserInfo extends Component {
       username: this.props.username,
       email: this.props.email,
       city: this.props.city,
-      country: this.props.country
+      country: this.props.country,
+      liked_posts: []
     }
   }
 
@@ -46,6 +47,8 @@ class UserInfo extends Component {
       [prop]: val
     })
   }
+
+
 
   updateUserInfo = () => {
     const { user_image, username, city, country } = this.state
