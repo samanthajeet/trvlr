@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { updateUser } from "../../ducks/reducer";
-import {withRouter} from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 import CommunityPost from "../Community Posts/Community_Post";
 import CommunityUsers from "../Community Members/CommunityMembers";
 
@@ -133,7 +133,9 @@ class Community extends Component {
         post =>
           post.post_city.toLowerCase().includes(this.state.search) ||
           post.post_country.toLowerCase().includes(this.state.search) ||
-          post.username.toLowerCase().includes(this.state.search.toLocaleLowerCase())
+          post.username
+            .toLowerCase()
+            .includes(this.state.search.toLocaleLowerCase())
       )
       .map(post => {
         return (
@@ -153,7 +155,6 @@ class Community extends Component {
               view_profile={this.viewUserProfile}
               view_post={this.viewUserPost}
               history={this.props.history}
-
             />
           </div>
         );
@@ -162,24 +163,32 @@ class Community extends Component {
     return (
       <div className="community">
         <div>
-          <button onClick={() => this.changeCommunityView("posts")} className="comm-btn">
+          <button
+            onClick={() => this.changeCommunityView("posts")}
+            className="comm-btn"
+          >
             posts
           </button>
-          <button onClick={() => this.changeCommunityView("people")} className="comm-btn">
+          <button
+            onClick={() => this.changeCommunityView("people")}
+            className="comm-btn"
+          >
             people
           </button>
         </div>
         {this.state.communityView === "posts" ? (
           <div>
-            <h2>
-              posts from the <span style={{ color: "#FFAA00" }}>trvlr</span>{" "}
-              community
-            </h2>
-            <input
-              type="text"
-              placeholder="search posts"
-              onChange={e => this.handleChange("search", e.target.value)}
-            />
+            <div className="communitysearch">
+              <input
+                type="text"
+                placeholder="search posts"
+                onChange={e => this.handleChange("search", e.target.value)}
+              />
+              <h2>
+                posts from the <span style={{ color: "#FFAA00" }}>trvlr</span>{" "}
+                community
+              </h2>
+            </div>
             {/* <div className="search-posts">
               <input
                 type="text"
@@ -199,7 +208,7 @@ class Community extends Component {
                 placeholder="search by username or email"
                 onChange={e => this.handleChange("user_search", e.target.value)}
               />
-              <button>Search users</button>
+              <h2>members of the trvlr community</h2>
             </div>
             <div className="communityusers">{mappedUsers}</div>
           </div>
@@ -217,7 +226,9 @@ const mapDispatchToProps = {
   updateUser
 };
 
-export default withRouter(connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Community));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Community)
+);

@@ -8,7 +8,7 @@
 
 .communiytPost {
   width: 30rem;
-  height: 90%;
+  height: 25rem;
   margin-right: 1rem;
   border: 1.5px solid #FFAA00;
   padding: 10px;
@@ -48,8 +48,9 @@
 
 
 .communitypostimage {
+  /* border: 2px solid red; */
   width: 100%;
-  height: 65%;
+  height: 68%;
 }
 
 .communitypostimage img {
@@ -63,13 +64,21 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.25rem;
 }
 
 .authorDetail {
+  /* border: 2px solid blue; */
   display: flex;
   align-items: center;
   
+}
+
+.avatarbtn{
+  border: 2px solid red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .authorDetail img {
@@ -121,3 +130,5 @@
   height: 2rem;
   width: 5rem;
 }
+
+button:focus {outline:0;}

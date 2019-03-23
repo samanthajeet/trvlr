@@ -95,7 +95,7 @@ class Community_post extends Component {
               <div>
                 <button onClick={() => this.likePost(post_id)} className="likebtn">
                   <p>{like_count} </p>
-                  <i class="far fa-thumbs-up" />
+                  <i class="far fa-thumbs-up" style={{"marginLeft": "0.25rem"}} />
                 </button>
               </div>
             )}

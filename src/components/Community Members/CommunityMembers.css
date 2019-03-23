@@ -24,18 +24,40 @@
 .userImage {
   width:8rem;
   height: 8rem;
+  margin-bottom: 0.5rem;
 }
 
 .communityUsers h5 {
+  font-family: 'Roboto', sans-serif;
   font-size: 1rem;
-  color: #808080;
+  color: black;
+  margin-bottom: 0.25rem;
 }
+
+
+
 .userImage img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 50%;
 }
+
+.commuser-location{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.communityUsers p {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.8rem;
+  color: #808080;
+  margin-bottom: 0.25rem;
+}
+
 
 .communityUsers button {
   font-size: 0.7rem;
@@ -48,5 +70,5 @@
   color: #FFAA00;
   height: 1.5rem;
   width: 5rem;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 }

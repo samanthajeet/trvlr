@@ -57,8 +57,10 @@ class CommunityMembers extends Component {
       <img src={user_image} alt={username} />
     </div>
       <h5>{username}</h5>
-      <i class="fas fa-globe-americas"></i><p>{user_city}</p>
-      <p>number of posts</p>
+      <div className="commuser-location">
+      < i class="fas fa-globe-americas" style={{"marginRight" : "0.25rem"}} ></i><p> {user_city}</p>
+      </div>
+      {/* <p>number of posts</p> */}
       
       {user_user_id === user_id   ? (
         null

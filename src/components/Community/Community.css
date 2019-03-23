@@ -1,18 +1,17 @@
 .community{
+  /* border: 2px solid red; */
   width: 75%;
-  height: 100%;
+  height: 50rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  animation-name: fade-in;
+  animation-duration: 1s;
 }
 
-.community-posts {
-  height: 78vh;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  overflow-y: scroll; 
-  overflow-x:hidden
-
+@keyframes fade-in {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 .search-posts {
@@ -26,22 +25,76 @@
   margin-bottom: 1rem;
 }
 
+.communitysearch{
+  /* border:2px solid green; */
+  height: 6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  
 
-.community input {
-  width: 20%;
 }
 
-.communityusers {
-  /* border: 2px solid green; */
-  height: 82vh;
+.communitysearch input {
+  width: 50%;
+  height: 50%;
+  text-align: center;
+}
+
+
+.community-posts {
+  /* border: 2px solid purple; */
+  height: 41rem;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  justify-content: flex-start;
   overflow-y: scroll; 
   overflow-x:hidden
 
 }
+
+
+.communityusers-container{
+  /* border: 2px solid red; */
+}
+
+
+.communityusers {
+  /* border: 2px solid green; */
+  height: 75vh;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  overflow-y: scroll; 
+  overflow-x:hidden
+  
+}
+
+.searchUsers{
+  /* border: 2px solid blue; */
+  height: 6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.searchUsers input {
+  width: 50%;
+  height: 50%;
+  text-align: center;
+}
+
+.searchUsers h2 {
+  font-size: 1.5rem;
+  font-family: 'Roboto', sans-serif;
+  text-transform: lowercase;
+  font-weight: 200;
+  color: gray;
+}
+
 
 
 .comm-btn {
@@ -68,11 +121,10 @@
   color: #FFAA00;
 }
 
-.community h2 {
+.communitysearch h2 {
   font-size: 1.5rem;
   font-family: 'Roboto', sans-serif;
   text-transform: lowercase;
   font-weight: 200;
   color: gray;
-  text-align: right;
 }
