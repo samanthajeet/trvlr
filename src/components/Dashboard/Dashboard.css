@@ -19,7 +19,9 @@
   100% { opacity: 1; }
 }
 
-
+.weathergreeting {
+  margin-bottom: 1rem;
+}
 .dashboard h1 {
   font-size: 2rem;
   font-family: "Roboto", sans-serif;
@@ -48,7 +50,6 @@
 }
 
 .dashboardcomponents{
-  /* border: 2px solid pink; */
   width: 100%;
   height: 44rem;
   display: flex;
@@ -62,13 +63,16 @@
   flex-wrap: wrap;
   align-items: flex-start;
   align-content: flex-start;
+  padding-top: 0.5rem;
 }
 
 .dashbaordposts{
+  border: 2px solid green;
   width: 70%;
   height: 99%;
+  display: fixed;
   overflow-y: scroll; 
-  overflow-x:hidden
+  overflow-x:hidden;
 }
 
 .dashboard button {
@@ -84,3 +88,4 @@
   height: 1.5rem;
   width: 5rem;
 }
+

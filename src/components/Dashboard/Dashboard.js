@@ -152,6 +152,7 @@ class Dashboard extends Component {
 
     return (
       <div className="dashboard">
+      <div className="weathergreeting">
         <h1>
           {this.state.randomGreeting},{" "}
           <span style={{ color: "#FFAA00" }}>{this.props.username}!</span>
@@ -159,6 +160,7 @@ class Dashboard extends Component {
         <p>
           The current temperature in {this.props.city} is {this.state.weather}°f
         </p>
+      </div>
 
         <div className="dashboardPosts">
           {this.state.loading ? (
@@ -182,7 +184,9 @@ class Dashboard extends Component {
                     </button>
                   </div>
                 ) : null}
+                <div className="mappedposts" >
                 {mappedPosts}
+                </div>
               </div>
             </div>
           )}
