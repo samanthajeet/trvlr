@@ -112,12 +112,12 @@ class PublicProfile extends Component {
     return ( 
       
       <div className="publicProfile">
-        <Avatar src={this.state.user_image} alt={this.state.username} style={{"width": 100, "height": 100}} />
+        <Avatar src={this.state.user_image} alt={this.state.username} style={{"width": 200, "height": 200, "marginBottom": "1rem" }} />
 
 
         <h2>
           entries by
-          <span className="trvlr" > {this.state.username} </span>
+          <span style={{ color: "#FFAA00" }} > {this.state.username} </span>
         </h2>
         <div className="publicProfile-posts">
 

@@ -155,11 +155,12 @@ class Dashboard extends Component {
       <div className="weathergreeting">
         <h1>
           {this.state.randomGreeting},{" "}
-          <span style={{ color: "#FFAA00" }}>{this.props.username}!</span>
+          <span style={{ color: "#FFAA00" }}> {this.props.username}!</span>
         </h1>
         <p>
           The current temperature in {this.props.city} is {this.state.weather}°f
         </p>
+        <button onClick={() => this.props.history.push('/newPost')}>create new entry</button>
       </div>
 
         <div className="dashboardPosts">

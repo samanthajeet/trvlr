@@ -67,7 +67,7 @@
 }
 
 .dashbaordposts{
-  border: 2px solid green;
+  /* border: 2px solid green; */
   width: 70%;
   height: 99%;
   display: fixed;
@@ -83,9 +83,9 @@
   color: white;
   background: none;
   border: 1px solid #FFAA00;
-  color: #FFAA00;
+  color: #2f2f30;
   margin-top: 0.5rem;
   height: 1.5rem;
-  width: 5rem;
+  width: 6rem;
 }
 

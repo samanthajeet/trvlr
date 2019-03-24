@@ -209,7 +209,7 @@ class NewPost extends Component {
           </div>
           <div className="newpostbtn">
             <button onClick={this.createPost}>Create New entry</button>
-            <button onClick={() => this.props.history.push("/journal")}>
+            <button onClick={() => window.history.back()} >
               Cancel
             </button>
           </div>

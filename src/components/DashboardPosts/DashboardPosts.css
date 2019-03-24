@@ -27,6 +27,7 @@
   }
 }
 
+
 .dashboard-post-text {
   margin-top: 0.5rem;
   margin-bottom: 1rem;
@@ -88,10 +89,9 @@
   font-family: "Roboto", sans-serif;
   text-transform: lowercase;
   font-weight: 300;
-  color: white;
   background: none;
   border: 1px solid #ffaa00;
-  color: #ffaa00;
+  color: #2f2f30;
   margin-top: 0.5rem;
   height: 1.5rem;
   width: 5rem;
