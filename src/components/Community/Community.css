@@ -1,5 +1,4 @@
 .community{
-  /* border: 2px solid red; */
   width: 75%;
   height: 50rem;
   display: flex;
@@ -57,13 +56,14 @@
 
 .communityusers-container{
   /* border: 2px solid red; */
+  width: 100%;
   margin-top: 1rem;
 }
 
 
 .communityusers {
   /* border: 2px solid green; */
-  height: 75vh;
+  height: 72vh;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;

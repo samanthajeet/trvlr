@@ -192,7 +192,7 @@ class UserInfo extends Component {
           >
             {isUploading ? <GridLoader /> : <p>Drop File or Click Here</p>}
           </Dropzone>
-          <p>upload image above and insert image url below</p>
+          <p>upload image above or insert image url below</p>
           <input
             type="text"
             value={this.state.user_image}

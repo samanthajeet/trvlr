@@ -1,33 +1,36 @@
-import React, {Component} from 'react';
-import axios from 'axios';
-import {connect} from 'react-redux';
+import React, { Component } from "react";
+import axios from "axios";
+import { connect } from "react-redux";
 import Avatar from "@material-ui/core/Avatar";
-import './Post.css'
+import ReactLoading from "react-loading";
+// import { Parallax } from "react-scroll-parallax";
+import "./Post.css";
 
 class Post extends Component {
-  constructor(props){
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
+      loading: true,
       post: [],
       userIdMatch: false,
       liked: false,
       button: "like"
-    }
+    };
   }
 
-  componentWillMount(){
+  componentWillMount() {
     this.getPost();
-    
+
     // this.checkUserIdMatch()
   }
 
-
-  getPost(){
-    axios.get(`/journal/${this.props.match.params.post_id}`).then( response => {
+  getPost() {
+    axios.get(`/journal/${this.props.match.params.post_id}`).then(response => {
       this.setState({
-        post: response.data
-      })
-    })
+        post: response.data,
+        loading: false
+      });
+    });
     this.checkLike();
   }
 
@@ -45,7 +48,6 @@ class Post extends Component {
       console.log(err);
     }
   };
-
 
   likePost(post_id) {
     axios.post(`/community/likePost/${this.props.match.params.post_id}`);
@@ -67,59 +69,79 @@ class Post extends Component {
   //     })
   //   }
   // }
-  
-  render() { 
-    const { post_title, post_text, post_image1, username, post_id, user_image, post_date} = this.state.post
-    console.log(this.state.post)
-    return ( 
-      <div className="post-container">
-        <div className="post">
-        <p>{post_date}</p>
-          <h1>{post_title}</h1>
-          <div className="author">
-            <Avatar src={user_image} alt={username} style={{"marginRight" : "0.75rem", "width": "2rem", "height": "2rem"}}/>
-            <h4>by {username}</h4>
-          </div>
-          <div className="post-btns" >
-            <button onClick={() => window.history.back()} >go back </button>
-            {this.state.liked ? (
-                <div className="comm-like">
-                  {/* <p>{like_count}</p> */}
-                  <button onClick={() => this.unlikePost(post_id)}>
-                    <i class="fas fa-thumbs-up" />
-                  </button>
-                </div>
-              ) : (
-                <div>
-                  <button onClick={() => this.likePost(post_id)}>
-                    {/* <p>{like_count}</p> */}
-                    <i class="far fa-thumbs-up" />
-                  </button>
-                </div>
-              )}
-          </div>
-          <div className="postimage">
-            <img src={post_image1} alt={post_title} />
-          </div>
-        
-          <div dangerouslySetInnerHTML={{__html: post_text }} className="post-text" />
-            
-          </div>
-          <div className="postbtns">
 
-            {/* {this.state.userIdMatch? (
-              <button >edit</button>
-              ) : (
-                  null
-              )} */}
+  render() {
+    const {
+      post_title,
+      post_text,
+      post_image1,
+      username,
+      post_id,
+      user_image,
+      post_date
+    } = this.state.post;
+    console.log(this.state.post);
+    return (
+      <div className="post-landing">
+        {this.state.loading ? (
+          <div className="loading">
+            <ReactLoading type="spinningBubbles" color="#FFAA00" />
           </div>
+        ) : (
+          <div className="post-container">
+            <div className="post">
+              <p>{post_date}</p>
+              <h1>{post_title}</h1>
+              <div className="author">
+                <Avatar
+                  src={user_image}
+                  alt={username}
+                  style={{
+                    marginRight: "0.75rem",
+                    width: "2rem",
+                    height: "2rem"
+                  }}
+                />
+                <h4>by {username}</h4>
+              </div>
+              <div className="post-btns">
+                <button onClick={() => window.history.back()}>go back </button>
+                {this.state.liked ? (
+                  <div className="comm-like">
+                    {/* <p>{like_count}</p> */}
+                    <button onClick={() => this.unlikePost(post_id)}>
+                      <i class="fas fa-thumbs-up" />
+                    </button>
+                  </div>
+                ) : (
+                  <div>
+                    <button onClick={() => this.likePost(post_id)}>
+                      {/* <p>{like_count}</p> */}
+                      <i class="far fa-thumbs-up" />
+                    </button>
+                  </div>
+                )}
+              </div>
+              <div className="post-content">
+              <div className="postimage">
+                <img src={post_image1} alt={post_title} />
+              </div>
+
+              <div
+                dangerouslySetInnerHTML={{ __html: post_text }}
+                className="post-text"
+              />
+            </div>
+            </div>
+          </div>
+        )}
       </div>
-     );
+    );
   }
 }
 
-const mapSTateToProps = (reduxState) => {
-  return reduxState
-}
- 
+const mapSTateToProps = reduxState => {
+  return reduxState;
+};
+
 export default connect(mapSTateToProps)(Post);

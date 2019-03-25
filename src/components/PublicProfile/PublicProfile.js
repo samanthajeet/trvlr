@@ -4,6 +4,7 @@ import {withRouter} from 'react-router-dom';
 import { connect } from "react-redux";
 import { updateUser } from "../../ducks/reducer";
 import Avatar from '@material-ui/core/Avatar';
+import ReactLoading from "react-loading";
 import CommunityPost from "../Community Posts/Community_Post";
 import './PublicProfile.css'
 
@@ -11,6 +12,7 @@ class PublicProfile extends Component {
   constructor(props){
     super(props)
     this.state = {
+      loading: true,
       posts: [],
       username: '',
       user_image: ''
@@ -52,7 +54,8 @@ class PublicProfile extends Component {
   getUserPosts =() => {
     axios.get(`/publicProfile/posts/${this.props.match.params.user_id}`).then( response => {
       this.setState({
-        posts: response.data
+        posts: response.data,
+        loading: false
       })
     })
   }
@@ -64,7 +67,7 @@ class PublicProfile extends Component {
       );
       if (response.data[0]) {
         this.setState({
-          liked: true
+          liked: true,
         });
       }
     } catch (err) {
@@ -110,20 +113,29 @@ class PublicProfile extends Component {
       );
     });
     return ( 
-      
-      <div className="publicProfile">
-        <Avatar src={this.state.user_image} alt={this.state.username} style={{"width": 200, "height": 200, "marginBottom": "1rem" }} />
+      <div className="publicProfile-container">
+        {this.state.loading ? (
+            <div className="loading">
+            <ReactLoading type="spinningBubbles" color="#FFAA00" />
+            </div>
+        ) : (
 
-
-        <h2>
-          entries by
-          <span style={{ color: "#FFAA00" }} > {this.state.username} </span>
-        </h2>
-        <div className="publicProfile-posts">
-
-          {mappedPosts}
-        </div>
+          <div className="publicProfile">
+            <Avatar src={this.state.user_image} alt={this.state.username} style={{"width": 200, "height": 200, "marginBottom": "1rem" }} />
+  
+  
+            <h2>
+              entries by
+              <span style={{ color: "#FFAA00" }} > {this.state.username} </span>
+            </h2>
+            <div className="publicProfile-posts">
+  
+              {mappedPosts}
+            </div>
+          </div>
+        )}
       </div>
+      
      );
   }
 }

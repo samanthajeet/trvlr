@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import axios from "axios";
+import ReactLoading from "react-loading";
 // import './CommunityMembers.css'
 
 class CommunityFollowing extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: true,
       followed: false,
       button: "follow",
       friends: []
@@ -32,6 +34,9 @@ class CommunityFollowing extends Component {
     } catch (err) {
       console.log(err);
     }
+    this.setState({
+      loading: false
+    })
   };
 
   unfollowFriend() {

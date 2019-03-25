@@ -262,7 +262,9 @@ class Community extends Component {
           </div> 
         )
         ) : (
+          <div className="loading">
           <ReactLoading type="spinningBubbles" color="#FFAA00" />
+          </div>
         )}
       </div>
     );

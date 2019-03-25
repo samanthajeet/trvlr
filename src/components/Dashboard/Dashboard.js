@@ -177,10 +177,11 @@ class Dashboard extends Component {
                 {this.state.friend_search ? (
                   <div>
                     <p>
-                      viewing journal entries from {this.state.friend_search}
+                      viewing journal entries from <span style={{ color: "#FFAA00" }}>{this.state.friend_search}</span>
                     </p>
                     <button
                       onClick={() => this.setState({ friend_search: "" })}
+                      className="dashboard-newentry"
                     >
                       unfilter posts
                     </button>
