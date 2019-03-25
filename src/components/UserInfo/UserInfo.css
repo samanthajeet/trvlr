@@ -5,8 +5,13 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  animation-name: fade-in;
+  animation-duration: 1s;
 }
-
+@keyframes fade-in {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
 .updatephoto{
   display: flex;
   flex-direction: column;
@@ -47,8 +52,8 @@
 
 
 .updatephoto{
-  width: 20rem;
-  height: 20rem;
+  width: 25rem;
+  height: 25rem;
 }
 
 .profilephoto {
