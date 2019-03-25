@@ -5,6 +5,7 @@ import axios from "axios";
 import DashboardPosts from "../DashboardPosts/DashboardPosts";
 import DashboardUsers from "../Dashboard Users/DashboardUsers";
 import ReactLoading from "react-loading";
+import { Spin } from 'antd';
 import "./Dashboard.css";
 
 class Dashboard extends Component {
@@ -166,8 +167,8 @@ class Dashboard extends Component {
         <div className="dashboardPosts">
           {this.state.loading ? (
             <div>
-              <h1>Loading</h1>
               <ReactLoading type="spinningBubbles" color="#FFAA00" />
+              <Spin />
             </div>
           ) : (
             <div className="dashboardcomponents">

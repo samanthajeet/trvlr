@@ -182,7 +182,7 @@ class NewPost extends Component {
           </div>
           <div className="imageuploadarea">
             <div className="imageinputarea">
-              <p>upload image above and insert image url below</p>
+              
               <Dropzone
                 onDropAccepted={this.getSignedRequest}
                 style={{
@@ -203,6 +203,7 @@ class NewPost extends Component {
               >
                 {isUploading ? <GridLoader /> : <p>Drop File or Click Here</p>}
               </Dropzone>
+              <p>upload image above and insert image url below</p>
               <input
                 type="text"
                 placeholder="image_url"

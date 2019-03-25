@@ -3,6 +3,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { updateUser } from "../../ducks/reducer";
 import { withRouter } from "react-router-dom";
+import ReactLoading from "react-loading";
 import CommunityPost from "../Community Posts/Community_Post";
 import CommunityUsers from "../Community Members/CommunityMembers";
 import CommunityFollowing from '../Community Following/Community_Following'
@@ -13,6 +14,7 @@ class Community extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: true,
       user_id: null,
       communityPosts: [],
       users: [],
@@ -37,7 +39,8 @@ class Community extends Component {
       let posts = await axios.get("/journal/getAllCommunityPosts");
       // console.log(posts.data);
       this.setState({
-        communityPosts: posts.data
+        communityPosts: posts.data,
+        loading: false
       });
     } catch (err) {
       console.log(err);
@@ -211,8 +214,9 @@ class Community extends Component {
           >
             following
           </button>
-        </div>
-        {this.state.communityView === "posts" ? (
+        </div> 
+        {this.state.loading === false ? ( 
+         this.state.communityView === "posts" ? (
           <div>
             <div className="communitysearch">
               <input
@@ -256,7 +260,10 @@ class Community extends Component {
               {mappedFriends}
             </div>
           </div> 
-        )} 
+        )
+        ) : (
+          <ReactLoading type="spinningBubbles" color="#FFAA00" />
+        )}
       </div>
     );
   }

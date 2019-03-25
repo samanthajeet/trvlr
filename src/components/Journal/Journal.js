@@ -90,7 +90,7 @@ class Journal extends Component {
         {this.state.loading ? (
           <div>
             <h1>Loading</h1>
-            <ReactLoading type='bubbles' color="#FFAA00" />
+            <ReactLoading type="spinningBubbles" color="#FFAA00" />
           </div>
         ): (
           <div className="journal">
