@@ -40,6 +40,12 @@ class Login extends Component {
     }
   }
 
+  handleKeyPress = (event) => {
+    if(event.key == 'Enter'){
+      this.login()
+    }
+  }
+
   render() { 
 
     return ( 
@@ -63,9 +69,10 @@ class Login extends Component {
             type="password"
             placeholder="password"
             onChange={(e) => {this.handleChange('password', e.target.value)}}
+            onKeyPress={this.handleKeyPress}
           />
 
-          <button onClick={this.login} >Login</button>
+          <button onClick={() => this.login()} >Login</button>
           <button onClick={() => this.props.history.push('/')}>Cancel</button>
         </div>
 
