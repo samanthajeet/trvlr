@@ -20,8 +20,8 @@ class NewPost extends Component {
       // post_date: new Date(),
       isUploading: false,
       url: "http://via.placeholder.com/200x200",
-      post_city: '',
-      post_country: '',
+      post_city: "",
+      post_country: ""
     };
 
     this.setText = this.setText.bind(this);
@@ -47,8 +47,21 @@ class NewPost extends Component {
   createPost = async () => {
     console.log(this.state);
     const { user_id } = this.props;
-    const { post_title, post_text, post_image, post_city, post_country} = this.state;
-    let post = { user_id, post_title, post_text, post_image, post_city, post_country };
+    const {
+      post_title,
+      post_text,
+      post_image,
+      post_city,
+      post_country
+    } = this.state;
+    let post = {
+      user_id,
+      post_title,
+      post_text,
+      post_image,
+      post_city,
+      post_country
+    };
     try {
       let response = await axios.post("/journal/createPost", post);
       this.props.history.push("/journal");
@@ -133,7 +146,6 @@ class NewPost extends Component {
   };
 
   render() {
-
     const { url, isUploading } = this.state;
     // let timestampFormat = new Intl.DateTimeFormat("en-US", {
     //   year: "numeric",
@@ -143,62 +155,63 @@ class NewPost extends Component {
 
     return (
       <div className="newpost">
-        <div className="upperEdit">
-        <div className='text-edit'>
-          <p>post title</p>
-          <input
-            type="text"
-            placeholder="Post Title"
-            onChange={e => this.handleChange("post_title", e.target.value)}
-          />
-          <p>city</p>
-          <input
-            type="text"
-            placeholder="city"
-            onChange={e => this.handleChange("post_city", e.target.value)}
-          />
-          <p>country</p>
-          <input
-            type="text"
-            placeholder="country"
-            onChange={e => this.handleChange("post_country", e.target.value)}
-          />
+        <div className="newpostbtn">
+          <button onClick={this.createPost}>Create New entry</button>
+          <button onClick={() => window.history.back()}>Cancel</button>
         </div>
-          <div className="imageuploadarea">
-          <div className="imageinputarea">
-            <p>upload image above and insert image url below</p>
-            <Dropzone
-              onDropAccepted={this.getSignedRequest}
-              style={{
-                position: "relative",
-                width: "20rem",
-                height: "5rem",
-                borderWidth: 1,
-                borderColor: "#FFAA00",
-                borderStyle: "dashed",
-                borderRadius: 5,
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                fontSize: 28
-              }}
-              accept="image/*"
-              multiple={false}
-            >
-              {isUploading ? <GridLoader /> : <p>Drop File or Click Here</p>}
-            </Dropzone>
+        <div className="upperEdit">
+          <div className="text-edit">
+            <p>post title</p>
             <input
               type="text"
-              placeholder="image_url"
-              onChange={e => this.handleChange("post_image", e.target.value)}
+              placeholder="Post Title"
+              onChange={e => this.handleChange("post_title", e.target.value)}
+            />
+            <p>city</p>
+            <input
+              type="text"
+              placeholder="city"
+              onChange={e => this.handleChange("post_city", e.target.value)}
+            />
+            <p>country</p>
+            <input
+              type="text"
+              placeholder="country"
+              onChange={e => this.handleChange("post_country", e.target.value)}
             />
           </div>
-          <div className="imagepreview">
-            <img
-              src={this.state.post_image}
-              alt={this.state.post_title}
-            />
-          </div>
+          <div className="imageuploadarea">
+            <div className="imageinputarea">
+              <p>upload image above and insert image url below</p>
+              <Dropzone
+                onDropAccepted={this.getSignedRequest}
+                style={{
+                  position: "relative",
+                  width: "20rem",
+                  height: "5rem",
+                  borderWidth: 1,
+                  borderColor: "#FFAA00",
+                  borderStyle: "dashed",
+                  borderRadius: 5,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  fontSize: 28
+                }}
+                accept="image/*"
+                multiple={false}
+              >
+                {isUploading ? <GridLoader /> : <p>Drop File or Click Here</p>}
+              </Dropzone>
+              <input
+                type="text"
+                placeholder="image_url"
+                onChange={e => this.handleChange("post_image", e.target.value)}
+              />
+            </div>
+            <div className="imagepreview">
+              <img src={this.state.post_image} alt={this.state.post_title} />
+            </div>
           </div>
         </div>
         <div className="bottomEdit">
@@ -206,12 +219,6 @@ class NewPost extends Component {
             <div>
               <Quill setText={this.setText} />
             </div>
-          </div>
-          <div className="newpostbtn">
-            <button onClick={this.createPost}>Create New entry</button>
-            <button onClick={() => window.history.back()} >
-              Cancel
-            </button>
           </div>
         </div>
       </div>
