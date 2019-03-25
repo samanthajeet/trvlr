@@ -96,3 +96,8 @@
   height: 1.5rem;
   width: 40%;
 }
+
+.Quill {
+  /* border: 2px solid green; */
+  height: 100%;
+}

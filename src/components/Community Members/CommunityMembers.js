@@ -51,7 +51,7 @@ class CommunityMembers extends Component {
 
   render() {
     console.log(this.props)
-    const {user_image, username, user_id, addFriend, user_city, user_user_id} = this.props 
+    const {user_image, username, user_id, user_city, user_user_id} = this.props 
     return ( <div className="communityUsers">
     <div className="userImage">
       <img src={user_image} alt={username} />

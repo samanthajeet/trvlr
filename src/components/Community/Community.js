@@ -5,6 +5,7 @@ import { updateUser } from "../../ducks/reducer";
 import { withRouter } from "react-router-dom";
 import CommunityPost from "../Community Posts/Community_Post";
 import CommunityUsers from "../Community Members/CommunityMembers";
+import CommunityFollowing from '../Community Following/Community_Following'
 
 import "./Community.css";
 
@@ -15,9 +16,11 @@ class Community extends Component {
       user_id: null,
       communityPosts: [],
       users: [],
+      friends: [],
       user_search: "",
       search: "",
-      communityView: "posts"
+      communityView: "posts",
+      loading: true
     };
     this.viewUserProfile = this.viewUserProfile.bind(this);
   }
@@ -26,6 +29,7 @@ class Community extends Component {
     this.getCommunityPosts();
     this.getUsers();
     this.getUser();
+    this.getFriends();
   }
 
   getCommunityPosts = async () => {
@@ -67,6 +71,19 @@ class Community extends Component {
     }
   };
 
+  getFriends = async() => {
+    try{
+      let response = await axios.get(`/community/friendList/`)
+      if(response.data){
+        this.setState({
+          friends: response.data
+        })
+      }
+    } catch(err) {
+      console.log(err)
+    }
+  }
+
   handleChange(prop, val) {
     this.setState({
       [prop]: val
@@ -102,7 +119,7 @@ class Community extends Component {
   }
 
   render() {
-    console.log(111, this.props);
+    console.log(111, this.state.friends);
     let mappedUsers = this.state.users
       .filter(
         user =>
@@ -160,9 +177,22 @@ class Community extends Component {
         );
       });
 
+      let mappedFriends = this.state.friends.map( friend => {
+        return (
+          <div key={friend.friend_id} >
+            <CommunityFollowing
+              username={friend.username}
+              user_image={friend.user_image}
+              user_id={friend.friend_id}
+              user_city={friend.city}
+            />
+          </div>
+        )
+      })
+
     return (
       <div className="community">
-        <div>
+        <div className="communitybtn-section">
           <button
             onClick={() => this.changeCommunityView("posts")}
             className="comm-btn"
@@ -174,6 +204,12 @@ class Community extends Component {
             className="comm-btn"
           >
             people
+          </button>
+          <button
+            onClick={() => this.changeCommunityView("following")}
+            className="comm-btn"
+          >
+            following
           </button>
         </div>
         {this.state.communityView === "posts" ? (
@@ -200,19 +236,27 @@ class Community extends Component {
             </div> */}
             <div className="community-posts">{mappedPosts}</div>
           </div>
+        ) :  this.state.communityView === 'people' ? (
+          <div className="communityusers-container">
+          <div className="searchUsers">
+            <input
+              type="text"
+              placeholder="search by username or email"
+              onChange={e => this.handleChange("user_search", e.target.value)}
+            />
+            <h2>members of the trvlr community</h2>
+          </div>
+          <div className="communityusers">{mappedUsers}</div>
+        </div>
+
         ) : (
           <div className="communityusers-container">
-            <div className="searchUsers">
-              <input
-                type="text"
-                placeholder="search by username or email"
-                onChange={e => this.handleChange("user_search", e.target.value)}
-              />
-              <h2>members of the trvlr community</h2>
+            <h2>users you're following</h2>
+            <div className="communityusers">
+              {mappedFriends}
             </div>
-            <div className="communityusers">{mappedUsers}</div>
-          </div>
-        )}
+          </div> 
+        )} 
       </div>
     );
   }

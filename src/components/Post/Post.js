@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
+import Avatar from "@material-ui/core/Avatar";
 import './Post.css'
 
 class Post extends Component {
@@ -68,28 +69,35 @@ class Post extends Component {
   // }
   
   render() { 
-    const { post_title, post_text, post_image1, username, post_id} = this.state.post
+    const { post_title, post_text, post_image1, username, post_id, user_image, post_date} = this.state.post
+    console.log(this.state.post)
     return ( 
       <div className="post-container">
         <div className="post">
+        <p>{post_date}</p>
           <h1>{post_title}</h1>
-          <h4>by {username}</h4>
-          <button onClick={() => window.history.back()} >go back </button>
-          {this.state.liked ? (
-              <div className="comm-like">
-                {/* <p>{like_count}</p> */}
-                <button onClick={() => this.unlikePost(post_id)}>
-                  <i class="fas fa-thumbs-up" />
-                </button>
-              </div>
-            ) : (
-              <div>
-                <button onClick={() => this.likePost(post_id)}>
+          <div className="author">
+            <Avatar src={user_image} alt={username} style={{"marginRight" : "0.75rem", "width": "2rem", "height": "2rem"}}/>
+            <h4>by {username}</h4>
+          </div>
+          <div className="post-btns" >
+            <button onClick={() => window.history.back()} >go back </button>
+            {this.state.liked ? (
+                <div className="comm-like">
                   {/* <p>{like_count}</p> */}
-                  <i class="far fa-thumbs-up" />
-                </button>
-              </div>
-            )}
+                  <button onClick={() => this.unlikePost(post_id)}>
+                    <i class="fas fa-thumbs-up" />
+                  </button>
+                </div>
+              ) : (
+                <div>
+                  <button onClick={() => this.likePost(post_id)}>
+                    {/* <p>{like_count}</p> */}
+                    <i class="far fa-thumbs-up" />
+                  </button>
+                </div>
+              )}
+          </div>
           <div className="postimage">
             <img src={post_image1} alt={post_title} />
           </div>

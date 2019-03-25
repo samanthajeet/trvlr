@@ -1,4 +1,4 @@
-select username, user_image, friend_id
+select username, user_image, friend_id, city
 from friends f
 join users u
 on u.user_id = f.friend_id

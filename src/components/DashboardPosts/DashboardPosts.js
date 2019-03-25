@@ -91,17 +91,17 @@ class DashboardPosts extends Component {
           {this.state.liked ? (
             <div>
               <p>{like_count}</p>
-              <button onClick={() => this.unlikePost(post_id)}>
+              <button onClick={() => this.unlikePost(post_id)} style={{"border": "none"}} >
                 {" "}
-                <i class="fas fa-thumbs-up" />
+                <i class="fas fa-thumbs-up fa-2x" style={{"color": "#ffaa00" }} />
               </button>
             </div>
           ) : (
             <div>
               <p>{like_count}</p>
-              <button onClick={() => this.likePost(post_id)}>
+              <button onClick={() => this.likePost(post_id)} style={{"border": "none"}}>
                 {" "}
-                <i class="far fa-thumbs-up" />
+                <i class="far fa-thumbs-up fa-2x" style={{"color": "#ffaa00" }} />
               </button>
             </div>
           )}

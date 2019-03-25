@@ -46,6 +46,12 @@
 
 }
 
+.communiytPost p {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: #2f2f30;
+  font-size: 0.9rem;
+}
 
 .communitypostimage {
   /* border: 2px solid red; */

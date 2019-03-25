@@ -160,7 +160,7 @@ class Dashboard extends Component {
         <p>
           The current temperature in {this.props.city} is {this.state.weather}°f
         </p>
-        <button onClick={() => this.props.history.push('/newPost')}>create new entry</button>
+        <button className="dashboard-newentry" onClick={() => this.props.history.push('/newPost')}>create new entry</button>
       </div>
 
         <div className="dashboardPosts">

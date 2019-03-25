@@ -216,9 +216,7 @@ class NewPost extends Component {
         </div>
         <div className="bottomEdit">
           <div className="Quill">
-            <div>
               <Quill setText={this.setText} />
-            </div>
           </div>
         </div>
       </div>
