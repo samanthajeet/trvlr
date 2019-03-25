@@ -20,6 +20,11 @@
   
 }
 
+input:focus { 
+  outline: none;
+  border: 1px solid #FFAA00
+}
+
 ::-webkit-scrollbar {
   width: 6px;
 }

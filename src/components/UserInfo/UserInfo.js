@@ -49,6 +49,7 @@ class UserInfo extends Component {
     })
   }
 
+  handleFocus = (event) => event.target.select();
 
   updateUserInfo = () => {
     const { user_image, username, city, country } = this.state
@@ -76,6 +77,7 @@ class UserInfo extends Component {
               type="text"
               value={this.state.city}
               onChange={(e) => this.handleChange('city', e.target.value)}
+              onFocus={this.handleFocus}
             />
           </div>
           <p>update country</p>
@@ -84,6 +86,7 @@ class UserInfo extends Component {
               type="text"
               value={this.state.country}
               onChange={(e) => this.handleChange('country', e.target.value)}
+              onFocus={this.handleFocus}
             />
           </div>
           <p>update profile photo</p>
@@ -91,19 +94,22 @@ class UserInfo extends Component {
             type="text"
             value={this.state.user_image}
             onChange={(e) => this.handleChange('user_image', e.target.value)}
+            onFocus={this.handleFocus}
           />
           <p>update username</p>
           <input
             placeholder="username"
             value={this.state.username}
             onChange={(e) => this.handleChange('username', e.target.value)}
+            onFocus={this.handleFocus}
           />
-
+{/* 
           <p>update email address</p>
           <input
             placeholder="email"
             value={this.state.email}
-          />
+            onFocus={this.handleFocus}
+          /> */}
           
           <button onClick={this.updateUserInfo} >Update Info</button>
         </div>
